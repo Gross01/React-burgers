@@ -1,13 +1,17 @@
 import React from 'react';
 import AppHeader from '../../components/app-header/AppHeader'
-import BurgerIngredients from '../burgerIngredients/BurgerIngredients';
+import BurgerIngredients from '../burger-ingredients/BurgerIngredients.jsx';
+import {data} from '../../utils/data.js'
+import AppStyles from './App.module.css'
+import BurgerConstructor from '../burger-constructor/BurgerConstructor.jsx';
 
 function App() {
   return (
     <div className="App p-10">
       <AppHeader/>
-      <main>
-        <BurgerIngredients/>
+      <main className={AppStyles.main}>
+        <BurgerIngredients data={data}/>
+        <BurgerConstructor/>
       </main>
     </div>
   );

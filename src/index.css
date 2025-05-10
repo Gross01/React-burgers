@@ -3,3 +3,25 @@
   margin: 0;
   padding: 0;
 }
+
+.custom-scrollbar  {
+  scrollbar-color: auto;
+  scrollbar-width: auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #2F2F37;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #8585AD;
+  height: 75%;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #8585AD;
+}

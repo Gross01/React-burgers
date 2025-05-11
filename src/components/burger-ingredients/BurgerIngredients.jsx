@@ -2,11 +2,15 @@ import React from 'react'
 import Tabs from '../../UI/tabs/Tabs'
 import styles from './BurgerIngredients.module.css'
 import IngredientsList from '../ingredients-list/IngredientsList'
+import {PropTypes} from 'prop-types'
+import { dataTypes } from '../../utils/data-types'
 
 function BurgerIngredients ({data}) {
-    let bun = data.filter(item => item.type === 'bun')
-    let sauce = data.filter(item => item.type === 'sauce')
-    let main = data.filter(item => item.type === 'main')
+
+    const bun = data.filter(item => item.type === 'bun')
+    const sauce = data.filter(item => item.type === 'sauce')
+    const main = data.filter(item => item.type === 'main')
+
     return (
 
         <section className={styles.section}>
@@ -19,6 +23,10 @@ function BurgerIngredients ({data}) {
             </div>
         </section>
     )
+}
+
+BurgerIngredients.propTypes = {
+    data: PropTypes.arrayOf(dataTypes).isRequired
 }
 
 export default BurgerIngredients

@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './BurgerConstructor.module.css'
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
-
+import { dataTypes } from '../../utils/data-types'
+import PropTypes from 'prop-types'
 
 function BurgerConstructor ({data}) {
 
@@ -77,4 +78,7 @@ function BurgerConstructor ({data}) {
     )
 }
 
+BurgerConstructor.propTypes = {
+    data: PropTypes.arrayOf(dataTypes).isRequired
+}
 export default BurgerConstructor

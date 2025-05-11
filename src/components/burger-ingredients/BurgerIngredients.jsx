@@ -7,7 +7,6 @@ function BurgerIngredients ({data}) {
     let bun = data.filter(item => item.type === 'bun')
     let sauce = data.filter(item => item.type === 'sauce')
     let main = data.filter(item => item.type === 'main')
-    console.log(data)
     return (
 
         <section className={styles.section}>

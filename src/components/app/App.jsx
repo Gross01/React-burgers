@@ -7,11 +7,11 @@ import BurgerConstructor from '../burger-constructor/BurgerConstructor.jsx';
 
 function App() {
   return (
-    <div className="App p-10">
+    <div className="p-10">
       <AppHeader/>
       <main className={AppStyles.main}>
         <BurgerIngredients data={data}/>
-        <BurgerConstructor/>
+        <BurgerConstructor data={data}/>
       </main>
     </div>
   );

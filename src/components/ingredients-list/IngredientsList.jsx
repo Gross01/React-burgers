@@ -1,12 +1,12 @@
 import React from 'react'
-import IngredientsListStyles from './IngredientsList.module.css'
+import styles from './IngredientsList.module.css'
 import IngredientsItem from '../ingredients-item/IngredientsItem'
 
 function IngredientsList ({title, data}) {
     return (
         <div>
             <h2 className="text text_type_main-medium">{title}</h2>
-            <ul className={IngredientsListStyles.list}>
+            <ul className={styles.list}>
                 {data.map((cardInfo, index) => {
                     return <IngredientsItem cardInfo={cardInfo} key={index}/>
                 })}

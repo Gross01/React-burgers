@@ -1,0 +1,11 @@
+.link {
+    color: #fff;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    border-radius: 40px;
+}

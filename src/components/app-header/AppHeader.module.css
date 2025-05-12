@@ -1,0 +1,25 @@
+.header {
+    background-color: #1C1C21;
+}
+
+.headerContainer {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.headerContainer a:last-child {
+    margin-left: auto;
+}
+
+.headerList {
+    list-style: none;
+    display: flex;
+    margin-right: 112px;
+}
+
+.headerList li:first-child {
+    margin-right: 8px;
+}

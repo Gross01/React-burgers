@@ -1,0 +1,20 @@
+.section {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+}
+
+
+.title {
+    margin-bottom: 20px;
+}
+
+.ingredients {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-height: 620px;
+    overflow-y: scroll;
+}

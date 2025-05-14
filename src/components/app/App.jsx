@@ -10,8 +10,8 @@ function App() {
     <div className="p-10">
       <AppHeader/>
       <main className={AppStyles.main}>
-        <BurgerIngredients data={data}/>
-        <BurgerConstructor data={data}/>
+        <BurgerIngredients ingredients={data}/>
+        <BurgerConstructor ingredients={data}/>
       </main>
     </div>
   );

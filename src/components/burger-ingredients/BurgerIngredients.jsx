@@ -3,13 +3,13 @@ import Tabs from '../../UI/tabs/Tabs'
 import styles from './BurgerIngredients.module.css'
 import IngredientsList from '../ingredients-list/IngredientsList'
 import {PropTypes} from 'prop-types'
-import { dataTypes } from '../../utils/data-types'
+import { ingredientsTypes } from '../../utils/ingridients-types'
 
-function BurgerIngredients ({data}) {
+function BurgerIngredients ({ingredients}) {
 
-    const bun = data.filter(item => item.type === 'bun')
-    const sauce = data.filter(item => item.type === 'sauce')
-    const main = data.filter(item => item.type === 'main')
+    const bun = ingredients.filter(item => item.type === 'bun')
+    const sauce = ingredients.filter(item => item.type === 'sauce')
+    const main = ingredients.filter(item => item.type === 'main')
 
     return (
 
@@ -17,16 +17,16 @@ function BurgerIngredients ({data}) {
             <h2 className={`${styles.title} text text_type_main-large`}>Соберите Бургер</h2>
             <Tabs/>
             <div className={`${styles.ingredients} custom-scrollbar`}>
-                <IngredientsList title='Булки' data={bun}/>
-                <IngredientsList title='Соусы' data={sauce}/>
-                <IngredientsList title='Начинки' data={main}/>
+                <IngredientsList title='Булки' ingredients={bun}/>
+                <IngredientsList title='Соусы' ingredients={sauce}/>
+                <IngredientsList title='Начинки' ingredients={main}/>
             </div>
         </section>
     )
 }
 
 BurgerIngredients.propTypes = {
-    data: PropTypes.arrayOf(dataTypes).isRequired
+    ingredients: PropTypes.arrayOf(ingredientsTypes).isRequired
 }
 
 export default BurgerIngredients

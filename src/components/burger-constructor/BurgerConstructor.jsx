@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './BurgerConstructor.module.css'
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
-import { dataTypes } from '../../utils/data-types'
+import { ingredientsTypes } from '../../utils/ingridients-types'
 import PropTypes from 'prop-types'
 
-function BurgerConstructor ({data}) {
+function BurgerConstructor ({ingredients}) {
 
     const burgerComponents = [
         "60666c42cc7b410027a1a9b1",
@@ -17,10 +17,10 @@ function BurgerConstructor ({data}) {
         "60666c42cc7b410027a1a9be",
     ]
 
-    const firstItem = data.find(item => item['_id'] === burgerComponents[0])
+    const firstItem = ingredients.find(item => item['_id'] === burgerComponents[0])
 
     const priceSum = burgerComponents.reduce((sum, component, index) => {
-      const findItem = data.find(item => item['_id'] === component)
+      const findItem = ingredients.find(item => item['_id'] === component)
       if (index === 0) {
         return sum += (findItem.price * 2)
       }
@@ -45,7 +45,7 @@ function BurgerConstructor ({data}) {
                   return undefined
                 }
 
-                const currentElement = data.find(item => item['_id'] === comp)
+                const currentElement = ingredients.find(item => item['_id'] === comp)
 
                  return (
                     <div className={`${styles.item} pr-2`} key={index}>
@@ -79,6 +79,6 @@ function BurgerConstructor ({data}) {
 }
 
 BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(dataTypes).isRequired
+    ingredients: PropTypes.arrayOf(ingredientsTypes).isRequired
 }
 export default BurgerConstructor

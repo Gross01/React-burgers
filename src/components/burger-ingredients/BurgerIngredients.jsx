@@ -7,12 +7,13 @@ import { ingredientsTypes } from '../../utils/ingridients-types'
 
 function BurgerIngredients ({ingredients}) {
 
+    console.log(ingredients)
+
     const bun = ingredients.filter(item => item.type === 'bun')
     const sauce = ingredients.filter(item => item.type === 'sauce')
     const main = ingredients.filter(item => item.type === 'main')
 
-    return (
-
+    return ( 
         <section className={styles.section}>
             <h2 className={`${styles.title} text text_type_main-large`}>Соберите Бургер</h2>
             <Tabs/>

@@ -5,22 +5,22 @@ import { ingredientsTypes } from '../../utils/ingridients-types'
 import PropTypes from 'prop-types'
 
 function BurgerConstructor ({ingredients}) {
-
     const burgerComponents = [
-        "60666c42cc7b410027a1a9b1",
-        "60666c42cc7b410027a1a9b9",
-        "60666c42cc7b410027a1a9b4",
-        "60666c42cc7b410027a1a9bc",
-        "60666c42cc7b410027a1a9bb",
-        "60666c42cc7b410027a1a9bb",
-        "60666c42cc7b410027a1a9b3",
-        "60666c42cc7b410027a1a9be",
+        "Краторная булка N-200i",
+        "Соус традиционный галактический",
+        "Мясо бессмертных моллюсков Protostomia",
+        "Плоды Фалленианского дерева",
+        "Хрустящие минеральные кольца",
+        "Хрустящие минеральные кольца",
+        "Филе Люминесцентного тетраодонтимформа",
+        "Мини-салат Экзо-Плантаго",
     ]
 
-    const firstItem = ingredients.find(item => item['_id'] === burgerComponents[0])
+    const firstItem = ingredients.find(item => item.name === burgerComponents[0])
+    console.log(firstItem)
 
     const priceSum = burgerComponents.reduce((sum, component, index) => {
-      const findItem = ingredients.find(item => item['_id'] === component)
+      const findItem = ingredients.find(item => item.name === component)
       if (index === 0) {
         return sum += (findItem.price * 2)
       }
@@ -45,7 +45,7 @@ function BurgerConstructor ({ingredients}) {
                   return undefined
                 }
 
-                const currentElement = ingredients.find(item => item['_id'] === comp)
+                const currentElement = ingredients.find(item => item.name === comp)
 
                  return (
                     <div className={`${styles.item} pr-2`} key={index}>
@@ -74,7 +74,7 @@ function BurgerConstructor ({ingredients}) {
                 Оформить заказ
               </Button>
             </div>
-        </section>
+        </section> 
     )
 }
 

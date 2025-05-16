@@ -1,4 +1,3 @@
-import React from 'react'
 import { Logo, ProfileIcon, BurgerIcon, ListIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './AppHeader.module.css'
 import Link from '../../UI/link/Link'

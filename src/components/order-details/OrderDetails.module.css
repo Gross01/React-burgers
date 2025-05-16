@@ -1,0 +1,20 @@
+/* order details */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 520px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.image {
+    width: 120px;
+    height: 120px;
+    background-image: url('../../images/done.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.identificator {
+    text-shadow: 0px 0px 15px #4C4CFF;
+}  

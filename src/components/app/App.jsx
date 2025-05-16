@@ -34,7 +34,7 @@ function App() {
             <BurgerIngredients ingredients={ingredients}/>
             <BurgerConstructor ingredients={ingredients}/>
           </>
-        : <span className={`${styles.loading} mt-30 text text_type_main-medium`}>Загрузка... {console.log('загрузка', ingredients)}</span>}
+        : <span className={`${styles.loading} mt-30 text text_type_main-medium`}>Загрузка...</span>}
       </main>
     </div>
   );

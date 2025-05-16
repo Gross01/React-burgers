@@ -1,4 +1,3 @@
-import React from 'react'
 import Tabs from '../../UI/tabs/Tabs'
 import styles from './BurgerIngredients.module.css'
 import IngredientsList from '../ingredients-list/IngredientsList'
@@ -6,8 +5,6 @@ import {PropTypes} from 'prop-types'
 import { ingredientsTypes } from '../../utils/ingridients-types'
 
 function BurgerIngredients ({ingredients}) {
-
-    console.log(ingredients)
 
     const bun = ingredients.filter(item => item.type === 'bun')
     const sauce = ingredients.filter(item => item.type === 'sauce')

@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './IngredientsList.module.css'
 import IngredientsItem from '../ingredients-item/IngredientsItem'
 

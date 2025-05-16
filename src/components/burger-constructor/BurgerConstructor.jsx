@@ -3,8 +3,15 @@ import styles from './BurgerConstructor.module.css'
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ingredientsTypes } from '../../utils/ingridients-types'
 import PropTypes from 'prop-types'
+import ModalOverlay from '../modal-overlay/ModalOverlay'
+import OrderDetails from '../order-details/OrderDetails'
 
 function BurgerConstructor ({ingredients}) {
+
+    const [modalVisible, setModalVisible] = React.useState(false)
+
+    const modalHandler = () => setModalVisible(!modalVisible)
+
     const burgerComponents = [
         "Краторная булка N-200i",
         "Соус традиционный галактический",
@@ -17,7 +24,6 @@ function BurgerConstructor ({ingredients}) {
     ]
 
     const firstItem = ingredients.find(item => item.name === burgerComponents[0])
-    console.log(firstItem)
 
     const priceSum = burgerComponents.reduce((sum, component, index) => {
       const findItem = ingredients.find(item => item.name === component)
@@ -29,6 +35,7 @@ function BurgerConstructor ({ingredients}) {
 
     return (
         <section className={`${styles.section} p-4 pt-25`}>
+            {modalVisible && <ModalOverlay Content={OrderDetails} modalHandler={modalHandler}/>}
             <div className={`${styles.firstElement} pl-8`}>
               <ConstructorElement
                 type='top'
@@ -70,7 +77,7 @@ function BurgerConstructor ({ingredients}) {
             </div>
             <div className={`${styles.priceDiv} mt-10`}>
               <span className={`${styles.priceSpan} text text_type_main-medium`}>{priceSum} <CurrencyIcon/></span>
-              <Button htmlType="button" type="primary" size="medium">
+              <Button htmlType="button" type="primary" size="medium" onClick={modalHandler}>
                 Оформить заказ
               </Button>
             </div>
@@ -81,4 +88,5 @@ function BurgerConstructor ({ingredients}) {
 BurgerConstructor.propTypes = {
     ingredients: PropTypes.arrayOf(ingredientsTypes).isRequired
 }
+
 export default BurgerConstructor

@@ -1,26 +1,32 @@
 import React from 'react'
 import styles from './BurgerConstructor.module.css'
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
-import { dataTypes } from '../../utils/data-types'
+import { ingredientsTypes } from '../../utils/ingridients-types'
 import PropTypes from 'prop-types'
+import Modal from '../modal/Modal'
+import OrderDetails from '../order-details/OrderDetails'
 
-function BurgerConstructor ({data}) {
+function BurgerConstructor ({ingredients}) {
+
+    const [modalVisible, setModalVisible] = React.useState(false)
+
+    const modalHandler = () => setModalVisible(!modalVisible)
 
     const burgerComponents = [
-        "60666c42cc7b410027a1a9b1",
-        "60666c42cc7b410027a1a9b9",
-        "60666c42cc7b410027a1a9b4",
-        "60666c42cc7b410027a1a9bc",
-        "60666c42cc7b410027a1a9bb",
-        "60666c42cc7b410027a1a9bb",
-        "60666c42cc7b410027a1a9b3",
-        "60666c42cc7b410027a1a9be",
+        "Краторная булка N-200i",
+        "Соус традиционный галактический",
+        "Мясо бессмертных моллюсков Protostomia",
+        "Плоды Фалленианского дерева",
+        "Хрустящие минеральные кольца",
+        "Хрустящие минеральные кольца",
+        "Филе Люминесцентного тетраодонтимформа",
+        "Мини-салат Экзо-Плантаго",
     ]
 
-    const firstItem = data.find(item => item['_id'] === burgerComponents[0])
+    const firstItem = ingredients.find(item => item.name === burgerComponents[0])
 
     const priceSum = burgerComponents.reduce((sum, component, index) => {
-      const findItem = data.find(item => item['_id'] === component)
+      const findItem = ingredients.find(item => item.name === component)
       if (index === 0) {
         return sum += (findItem.price * 2)
       }
@@ -29,6 +35,11 @@ function BurgerConstructor ({data}) {
 
     return (
         <section className={`${styles.section} p-4 pt-25`}>
+            {modalVisible && 
+              <Modal modalHandler={modalHandler}>
+                <OrderDetails/>
+              </Modal>
+            }
             <div className={`${styles.firstElement} pl-8`}>
               <ConstructorElement
                 type='top'
@@ -45,7 +56,7 @@ function BurgerConstructor ({data}) {
                   return undefined
                 }
 
-                const currentElement = data.find(item => item['_id'] === comp)
+                const currentElement = ingredients.find(item => item.name === comp)
 
                  return (
                     <div className={`${styles.item} pr-2`} key={index}>
@@ -70,15 +81,16 @@ function BurgerConstructor ({data}) {
             </div>
             <div className={`${styles.priceDiv} mt-10`}>
               <span className={`${styles.priceSpan} text text_type_main-medium`}>{priceSum} <CurrencyIcon/></span>
-              <Button htmlType="button" type="primary" size="medium">
+              <Button htmlType="button" type="primary" size="medium" onClick={modalHandler}>
                 Оформить заказ
               </Button>
             </div>
-        </section>
+        </section> 
     )
 }
 
 BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(dataTypes).isRequired
+    ingredients: PropTypes.arrayOf(ingredientsTypes).isRequired
 }
+
 export default BurgerConstructor

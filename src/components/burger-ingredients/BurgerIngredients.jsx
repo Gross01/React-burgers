@@ -1,3 +1,4 @@
+import React from 'react'
 import Tabs from '../../UI/tabs/Tabs'
 import styles from './BurgerIngredients.module.css'
 import IngredientsList from '../ingredients-list/IngredientsList'
@@ -6,10 +7,18 @@ import { ingredientsTypes } from '../../utils/ingridients-types'
 
 function BurgerIngredients ({ingredients}) {
 
-    const bun = ingredients.filter(item => item.type === 'bun')
-    const sauce = ingredients.filter(item => item.type === 'sauce')
-    const main = ingredients.filter(item => item.type === 'main')
+    const bun = React.useMemo(() => {
+        return ingredients.filter(item => item.type === 'bun')
+    }, [ingredients])
 
+    const sauce = React.useMemo(() => {
+        return ingredients.filter(item => item.type === 'sauce')
+    }, [ingredients])
+
+    const main = React.useMemo(() => {
+        return ingredients.filter(item => item.type === 'main')
+    }, [ingredients])
+    
     return ( 
         <section className={styles.section}>
             <h2 className={`${styles.title} text text_type_main-large`}>Соберите Бургер</h2>

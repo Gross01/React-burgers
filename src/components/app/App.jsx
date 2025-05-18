@@ -14,6 +14,11 @@ function App() {
     const getIngredients = async () => {
       try {
         const res = await fetch(URL)
+
+        if (!res.ok) {
+          throw new Error(`Ошибка ${res.status}: ${res.statusText}`)
+        }
+
         const data = await res.json()
         setIngredients(data.data)
       } catch (e) {

@@ -3,7 +3,7 @@ import styles from './BurgerConstructor.module.css'
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ingredientsTypes } from '../../utils/ingridients-types'
 import PropTypes from 'prop-types'
-import ModalOverlay from '../modal-overlay/ModalOverlay'
+import Modal from '../modal/Modal'
 import OrderDetails from '../order-details/OrderDetails'
 
 function BurgerConstructor ({ingredients}) {
@@ -35,7 +35,11 @@ function BurgerConstructor ({ingredients}) {
 
     return (
         <section className={`${styles.section} p-4 pt-25`}>
-            {modalVisible && <ModalOverlay Content={OrderDetails} modalHandler={modalHandler}/>}
+            {modalVisible && 
+              <Modal modalHandler={modalHandler}>
+                <OrderDetails/>
+              </Modal>
+            }
             <div className={`${styles.firstElement} pl-8`}>
               <ConstructorElement
                 type='top'

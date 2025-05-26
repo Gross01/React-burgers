@@ -1,0 +1,11 @@
+.count {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #4C4CFF;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: grid;
+    place-content: center;
+}

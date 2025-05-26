@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import styles from './BurgerConstructor.module.css'
 import {CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import Modal from '../modal/Modal'
@@ -15,12 +15,14 @@ function BurgerConstructor () {
 
     const modalHandler = () => setModalVisible(!modalVisible)
 
-    const priceSum = constructorItems.reduce((sum, item) => {
-      if (item.bun) {
-          return sum += (item.price * 2)
-      }
-      return sum += item.price
-    }, 0)
+    const priceSum = useMemo(() => {
+      return constructorItems.reduce((sum, item) => {
+        if (item.bun) {
+            return sum += (item.price * 2)
+        }
+        return sum += item.price
+      }, 0)
+    }, [constructorItems])
 
     return (
         <section className={`${styles.section} p-4 pt-25`}>

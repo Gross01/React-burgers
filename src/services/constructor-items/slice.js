@@ -18,7 +18,14 @@ export const constructorSlice = createSlice({
         removeIngredient: (state, action) => {
             return [...state.filter(item => item.id !== action.payload)]
         },
+        moveItem: (state, action) => {
+            const {fromIndex, toIndex} = action.payload
+
+            const [dragElement] = state.splice(fromIndex, 1)
+
+            state.splice(toIndex, 0, dragElement)
+        }
     }
 })
 
-export const {addIngridient, removeIngredient, getPriceSum} = constructorSlice.actions
+export const {addIngridient, removeIngredient, moveItem} = constructorSlice.actions

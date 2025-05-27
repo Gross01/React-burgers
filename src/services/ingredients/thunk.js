@@ -13,8 +13,8 @@ export const getIngredients = createAsyncThunk(
             }
 
             return await response.json() 
-        } catch {
-            return thunkAPI.rejectWithValue('Сервер не отвечает')
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message)
         }
     }
 )

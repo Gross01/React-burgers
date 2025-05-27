@@ -1,6 +1,7 @@
 import styles from './EmptyStroke.module.css'
+import PropTypes from 'prop-types'
 
-export function EmptyStroke ({elementType}) {
+function EmptyStroke ({elementType}) {
 
     const divClassName = elementType === 'top' ? `${styles.div} ${styles.top}` : elementType === 'bottom' ? `${styles.div} ${styles.bottom}` : `${styles.div}` 
 
@@ -12,3 +13,9 @@ export function EmptyStroke ({elementType}) {
         </div>
     )
 }
+
+EmptyStroke.propTypes = {
+    elementType: PropTypes.string.isRequired
+}
+
+export default EmptyStroke

@@ -5,16 +5,20 @@ import Modal from '../modal/Modal'
 import IngredientDetails from '../ingredient-details/IngredientDetails'
 import {useDrag} from 'react-dnd'
 import Count from '../../UI/count/Count'
+import {useDispatch} from 'react-redux'
+import {changeCurrentIngredient, cleanCurrentIngredient} from '../../services/current-ingredient/slice'
+import PropTypes from 'prop-types'
 
 function IngredientsItem ({cardInfo}) {
-
+    const dispatch = useDispatch()
     const [{isDrag}, dragRef] = useDrag({
         type: 'ingredients',
         item: {
             name: cardInfo.name,
             image: cardInfo.image,
             price: cardInfo.price,
-            bun: cardInfo.type === 'bun'
+            bun: cardInfo.type === 'bun',
+            ingredientId: cardInfo['_id']
         },
         collect: monitor => ({
             isDrag: monitor.isDragging()
@@ -23,7 +27,22 @@ function IngredientsItem ({cardInfo}) {
 
     const [modalVisible, setModalVisible] = React.useState(false)
 
-    const modalHandler = () => { setModalVisible(!modalVisible)}
+    const modalHandler = () => {
+        dispatch(changeCurrentIngredient(
+            {
+                image: cardInfo.image_large, 
+                name: cardInfo.name, 
+                calories: cardInfo.calories, 
+                carbohydrates: cardInfo.carbohydrates, 
+                fat: cardInfo.fat, 
+                proteins: cardInfo.proteins
+            }
+        ))
+
+        if (modalVisible) dispatch(cleanCurrentIngredient())
+
+        setModalVisible(!modalVisible)
+    }
 
     const opacity = isDrag ? '0.5' : '1'
 
@@ -35,14 +54,18 @@ function IngredientsItem ({cardInfo}) {
                 <img src={cardInfo.image} alt={cardInfo.name}/>
                 <span className={`${styles.price} text text_type_digits-default m-1`}>{cardInfo.price} <CurrencyIcon type="primary" /></span>
                 <p className={`${styles.name} text text_type_main-small m-1`}>{cardInfo.name}</p>
-                <Count cardInfo={cardInfo} />
+                <Count cardName={cardInfo.name} />
             </li>
             {modalVisible &&
             <Modal modalHandler={modalHandler} title='Детали ингредиента'>
-                <IngredientDetails cardInfo={cardInfo}/>
+                <IngredientDetails/>
             </Modal>}
         </>
     )
+}
+
+IngredientsItem.propTypes = {
+    cardInfo: PropTypes.object.isRequired
 }
 
 export default IngredientsItem

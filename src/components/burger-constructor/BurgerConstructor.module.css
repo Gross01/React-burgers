@@ -19,3 +19,7 @@
     align-items: center;
     gap: 8px;
 }
+
+.errorText {
+    text-align: end;
+}

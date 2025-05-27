@@ -1,14 +1,15 @@
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components'
-import {useMemo} from 'react'
+import {useMemo, useEffect} from 'react'
 import styles from './ConstructorItems.module.css'
-import {CenterConstructorItems} from '../center-constructor-items/CenterConstructorItems'
-import {EmptyStroke} from '../../UI/empty-stroke/EmptyStroke'
+import CenterConstructorItems from '../center-constructor-items/CenterConstructorItems'
+import EmptyStroke from '../../UI/empty-stroke/EmptyStroke'
 import {useDrop} from 'react-dnd'
 import {addIngridient} from '../../services/constructor-items/slice'
 import {useDispatch, useSelector} from 'react-redux'
 import {nanoid} from 'nanoid'
+import PropTypes from 'prop-types'
 
-export function ConstructorItems () {
+function ConstructorItems ({setDisabled}) {
 
     const constructorItems = useSelector(store => store.constructorItems)
 
@@ -34,6 +35,16 @@ export function ConstructorItems () {
     }, [constructorItems])
 
     const outline = isHover ? '1px mediumpurple dashed' : 'none'
+
+    useEffect(() => {
+        if (!bun) {
+            setDisabled(true)
+        } else if (constructorItems.length < 2) {
+            setDisabled(true)
+        } else {
+            setDisabled(false)
+        }
+    }, [bun, constructorItems, setDisabled])
 
     return (
         <>
@@ -72,3 +83,9 @@ export function ConstructorItems () {
         </>        
     )
 }
+
+ConstructorItems.propTypes = {
+  setDisabled: PropTypes.func.isRequired,
+};
+
+export default ConstructorItems

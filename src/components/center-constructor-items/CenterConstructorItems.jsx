@@ -1,7 +1,11 @@
 import styles from './CenterConstructorItems.module.css'
 import ConstructorItem from '../constructor-item/ConstructorItem'
+import {useSelector} from 'react-redux'
 
-export function CenterConstructorItems ({constructorItems}) {
+function CenterConstructorItems () {
+
+    const constructorItems = useSelector(store => store.constructorItems)
+
     return (
         <div className={`${styles.centerElements} custom-scrollbar`}>
             {constructorItems.map((item, index) => {
@@ -17,3 +21,5 @@ export function CenterConstructorItems ({constructorItems}) {
         </div>
     )
 }
+
+export default CenterConstructorItems

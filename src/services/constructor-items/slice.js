@@ -24,8 +24,8 @@ export const constructorSlice = createSlice({
             const [dragElement] = state.splice(fromIndex, 1)
 
             state.splice(toIndex, 0, dragElement)
-        }
+        },
     }
 })
 
-export const {addIngridient, removeIngredient, moveItem} = constructorSlice.actions
+export const {addIngridient, removeIngredient, moveItem, getIngredietIdNumbers} = constructorSlice.actions

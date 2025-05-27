@@ -4,9 +4,9 @@ import styles from './ConstructorItem.module.css'
 import {removeIngredient} from '../../services/constructor-items/slice'
 import {useDrag, useDrop} from 'react-dnd'
 import {moveItem} from '../../services/constructor-items/slice'
+import PropTypes from 'prop-types'
 
 function ConstructorItem ({itemInfo, index}) {
-
     const dispatch = useDispatch()
 
     const [, dragRef] = useDrag({
@@ -36,5 +36,10 @@ function ConstructorItem ({itemInfo, index}) {
         </div>
     )
 }
+
+ConstructorItem.propTypes = {
+  itemInfo: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+};
 
 export default ConstructorItem

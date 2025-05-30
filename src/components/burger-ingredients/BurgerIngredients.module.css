@@ -18,3 +18,7 @@
     max-height: 620px;
     overflow-y: scroll;
 }
+
+.statusText {
+    align-self: center;
+}

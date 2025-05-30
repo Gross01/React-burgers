@@ -1,5 +1,7 @@
 .li {
+    position: relative;
     display: flex;
+    border-radius: 20px;
     flex-direction: column;
     align-items: center;
     padding: 0 16px;

@@ -1,96 +1,68 @@
-import React from 'react'
+import {useMemo, useState} from 'react'
 import styles from './BurgerConstructor.module.css'
-import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
-import { ingredientsTypes } from '../../utils/ingridients-types'
-import PropTypes from 'prop-types'
+import {CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import Modal from '../modal/Modal'
 import OrderDetails from '../order-details/OrderDetails'
+import {useSelector, useDispatch} from 'react-redux'
+import ConstructorItems from '../constructor-items/ConstructorItems'
+import {sendOrder} from '../../services/order/thunk'
 
-function BurgerConstructor ({ingredients}) {
+function BurgerConstructor () {
 
-    const [modalVisible, setModalVisible] = React.useState(false)
+    const [modalVisible, setModalVisible] = useState(false)
+    const [disabledButton, setDisabledButton] = useState(false)
 
-    const modalHandler = () => setModalVisible(!modalVisible)
+    const error = useSelector(store => store.order.error)
+    const loading = useSelector(store => store.order.loading)
+    const constructorItems = useSelector(store => store.constructorItems)
 
-    const burgerComponents = [
-        "Краторная булка N-200i",
-        "Соус традиционный галактический",
-        "Мясо бессмертных моллюсков Protostomia",
-        "Плоды Фалленианского дерева",
-        "Хрустящие минеральные кольца",
-        "Хрустящие минеральные кольца",
-        "Филе Люминесцентного тетраодонтимформа",
-        "Мини-салат Экзо-Плантаго",
-    ]
+    const dispatch = useDispatch()
 
-    const firstItem = ingredients.find(item => item.name === burgerComponents[0])
-
-    const priceSum = burgerComponents.reduce((sum, component, index) => {
-      const findItem = ingredients.find(item => item.name === component)
-      if (index === 0) {
-        return sum += (findItem.price * 2)
+    const itemsIngredietsId = useMemo(() =>
+      constructorItems.map(item => {
+        return item.ingredientId
       }
-      return sum += findItem.price
-    }, 0)
+    ), [constructorItems])
+
+    const modalHandler = () => {
+      dispatch(sendOrder(itemsIngredietsId))
+      setModalVisible(!modalVisible)
+    }
+
+    const priceSum = useMemo(() => {
+      return constructorItems.reduce((sum, item) => {
+        if (item.bun) {
+            return sum += (item.price * 2)
+        }
+        return sum += item.price
+      }, 0)
+    }, [constructorItems])
 
     return (
         <section className={`${styles.section} p-4 pt-25`}>
             {modalVisible && 
+            !loading &&
+            !error &&
               <Modal modalHandler={modalHandler}>
                 <OrderDetails/>
               </Modal>
             }
-            <div className={`${styles.firstElement} pl-8`}>
-              <ConstructorElement
-                type='top'
-                isLocked='true'
-                text={`${firstItem.name} (верх)`}
-                price={firstItem.price}
-                thumbnail={firstItem.image}
-              />
-            </div>
-            <div className={`${styles.centerElements} custom-scrollbar`}>
-               {burgerComponents.map((comp, index) => {
 
-                if (index === 0) {
-                  return undefined
-                }
+            <ConstructorItems setDisabled={setDisabledButton}/>
 
-                const currentElement = ingredients.find(item => item.name === comp)
-
-                 return (
-                    <div className={`${styles.item} pr-2`} key={index}>
-                      <button className={styles.drag}><DragIcon type="primary" /></button>
-                      <ConstructorElement
-                        text={currentElement.name}
-                        price={currentElement.price}
-                        thumbnail={currentElement.image}
-                      />
-                    </div>
-                 )
-               })}
-            </div>
-            <div className={`${styles.lastElement} pl-8`}>
-              <ConstructorElement
-                type='bottom'
-                isLocked='true'
-                text={`${firstItem.name} (низ)`}
-                price={firstItem.price}
-                thumbnail={firstItem.image}
-              />
-            </div>
             <div className={`${styles.priceDiv} mt-10`}>
               <span className={`${styles.priceSpan} text text_type_main-medium`}>{priceSum} <CurrencyIcon/></span>
-              <Button htmlType="button" type="primary" size="medium" onClick={modalHandler}>
-                Оформить заказ
+              <Button htmlType="button" type="primary" size="medium" onClick={modalHandler} disabled={disabledButton}>
+                {
+                  loading 
+                  ?  'Обработка'
+                  : 'Оформить заказ'
+                }
               </Button>
             </div>
+            {error && <p className={`${styles.errorText} text text_type_main-small mt-10`}>Ошибка загрузки, попробуйте еще раз</p>}
         </section> 
     )
-}
-
-BurgerConstructor.propTypes = {
-    ingredients: PropTypes.arrayOf(ingredientsTypes).isRequired
 }
 
 export default BurgerConstructor

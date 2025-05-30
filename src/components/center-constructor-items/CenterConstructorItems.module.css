@@ -1,0 +1,8 @@
+.centerElements {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 369px;
+    overflow-y: scroll;
+}

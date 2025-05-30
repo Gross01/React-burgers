@@ -1,0 +1,22 @@
+
+.div {
+    width: 100%;
+    max-width: 520px;
+    margin-left: 30px;
+    background-color: rgb(47, 47, 55);
+    border-radius: 40px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top {
+    border-top-left-radius: 88px;
+    border-top-right-radius: 88px;
+}
+
+.bottom {
+    border-bottom-left-radius: 88px;
+    border-bottom-right-radius: 88px;
+}

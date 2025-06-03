@@ -6,7 +6,7 @@ export const constructorSlice = createSlice({
     name: 'constructorItems',
     initialState,
     reducers: {
-        addIngridient: (state, action) => {
+        addIngredient: (state, action) => {
 
             if (action.payload.bun) {
                 const removedBun = [...state.filter(item => !item.bun)]
@@ -28,4 +28,4 @@ export const constructorSlice = createSlice({
     }
 })
 
-export const {addIngridient, removeIngredient, moveItem, getIngredietIdNumbers} = constructorSlice.actions
+export const {addIngredient, removeIngredient, moveItem, getIngredietIdNumbers} = constructorSlice.actions

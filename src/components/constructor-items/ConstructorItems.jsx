@@ -4,7 +4,7 @@ import styles from './ConstructorItems.module.css'
 import CenterConstructorItems from '../center-constructor-items/CenterConstructorItems'
 import EmptyStroke from '../../UI/empty-stroke/EmptyStroke'
 import {useDrop} from 'react-dnd'
-import {addIngridient} from '../../services/constructor-items/slice'
+import {addIngredient} from '../../services/constructor-items/slice'
 import {useDispatch, useSelector} from 'react-redux'
 import {nanoid} from 'nanoid'
 import PropTypes from 'prop-types'
@@ -21,7 +21,7 @@ function ConstructorItems ({setDisabled}) {
           isHover: monitor.isOver()
       }),
       drop (item) {
-        dispatch(addIngridient({
+        dispatch(addIngredient({
           ...item,
           id: nanoid()
         }))

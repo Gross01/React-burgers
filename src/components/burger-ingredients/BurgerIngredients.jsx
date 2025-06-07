@@ -1,13 +1,11 @@
-import {useEffect, useRef, useState} from 'react'
+import {useRef, useState} from 'react'
 import Tabs from '../../UI/tabs/Tabs'
 import styles from './BurgerIngredients.module.css'
 import IngredientsList from '../ingredients-list/IngredientsList'
-import {useDispatch, useSelector} from 'react-redux'
-import {getIngredients} from '../../services/ingredients/thunk'
+import {useSelector} from 'react-redux'
 import {selectBun, selectSauce, selectMain} from '../../services/ingredients/selectors'
 
 function BurgerIngredients () {
-    const dispatch = useDispatch()
     const loading = useSelector(store => store.ingredients.loading)
     const error = useSelector(store => store.ingredients.error)
     const bun = useSelector(selectBun)
@@ -48,10 +46,6 @@ function BurgerIngredients () {
             mainRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }
-
-    useEffect(() => {
-        dispatch(getIngredients())
-    }, [dispatch])
     
     const statusTextClass = `${styles.statusText} text text_type_main-medium`
 

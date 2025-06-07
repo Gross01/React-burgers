@@ -1,0 +1,13 @@
+.div {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    gap: 24px;
+    max-width: 480px;
+    background: transparent;
+}
+
+.textSize {
+    font-size: 30px;
+}

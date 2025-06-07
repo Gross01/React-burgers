@@ -6,6 +6,7 @@
 
 body {
   position: relative;
+  overflow: hidden;
 }
 
 .custom-scrollbar  {
@@ -28,4 +29,20 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #8585AD;
+}
+
+a {
+  text-decoration: none;
+}
+
+.link {
+  color: #4C4CFF;
+}
+
+.link:active {
+  opacity: 0.4;
+}
+
+.active {
+  color: white;
 }

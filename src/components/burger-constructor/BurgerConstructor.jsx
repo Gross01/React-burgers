@@ -43,7 +43,7 @@ function BurgerConstructor () {
             {modalVisible && 
             !loading &&
             !error &&
-              <Modal modalHandler={modalHandler}>
+              <Modal modalHandler={modalHandler} title={' '}>
                 <OrderDetails/>
               </Modal>
             }

@@ -1,0 +1,19 @@
+.div {
+    display: flex;
+    align-self: flex-start;
+    margin-top: 120px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    width: 480px;
+}
+
+.buttonsWrapper {
+    display: flex;
+    align-self: flex-end;
+    gap: 20px;
+}

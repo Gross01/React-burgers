@@ -1,16 +1,12 @@
 import React from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './IngredientsItem.module.css'
-import Modal from '../modal/Modal'
-import IngredientDetails from '../ingredient-details/IngredientDetails'
 import {useDrag} from 'react-dnd'
 import Count from '../../UI/count/Count'
-import {useDispatch} from 'react-redux'
-import {changeCurrentIngredient, cleanCurrentIngredient} from '../../services/current-ingredient/slice'
 import PropTypes from 'prop-types'
+import {useNavigate, useLocation} from "react-router-dom";
 
 function IngredientsItem ({cardInfo}) {
-    const dispatch = useDispatch()
     const [{isDrag}, dragRef] = useDrag({
         type: 'ingredients',
         item: {
@@ -24,24 +20,11 @@ function IngredientsItem ({cardInfo}) {
             isDrag: monitor.isDragging()
         })
     })
-
-    const [modalVisible, setModalVisible] = React.useState(false)
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const modalHandler = () => {
-        dispatch(changeCurrentIngredient(
-            {
-                image: cardInfo.image_large, 
-                name: cardInfo.name, 
-                calories: cardInfo.calories, 
-                carbohydrates: cardInfo.carbohydrates, 
-                fat: cardInfo.fat, 
-                proteins: cardInfo.proteins
-            }
-        ))
-
-        if (modalVisible) dispatch(cleanCurrentIngredient())
-
-        setModalVisible(!modalVisible)
+        navigate(`/ingredients/${cardInfo['_id']}`, {state: {background: location}})
     }
 
     const opacity = isDrag ? '0.5' : '1'
@@ -56,10 +39,6 @@ function IngredientsItem ({cardInfo}) {
                 <p className={`${styles.name} text text_type_main-small m-1`}>{cardInfo.name}</p>
                 <Count cardName={cardInfo.name} />
             </li>
-            {modalVisible &&
-            <Modal modalHandler={modalHandler} title='Детали ингредиента'>
-                <IngredientDetails/>
-            </Modal>}
         </>
     )
 }

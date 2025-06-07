@@ -1,0 +1,14 @@
+.div {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}
+
+.active {
+    color: white;
+}
+
+.tabsText {
+    font-size: 24px;
+    padding: 14px 0;
+}

@@ -3,11 +3,18 @@ import {Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-compon
 import Authorization from "../../components/authorization/Authorization";
 import {Link} from "react-router-dom";
 import PasswordInput from "../../UI/password-input/PasswordInput";
+import {useDispatch} from "react-redux";
+import {loginUser} from "../../services/user-info/thunk";
 
 const Login = () => {
 
     const [password, setPassword] = React.useState("");
     const [email, setEmail] = React.useState('');
+    const dispatch = useDispatch();
+
+    const buttonHandler = () => {
+        dispatch(loginUser({password: password, email: email}))
+    }
 
     return (
         <Authorization title='Вход'>
@@ -18,7 +25,7 @@ const Login = () => {
                 placeholder='E-mail'
             />
             <PasswordInput placeholder='Пароль' value={password} setValue={setPassword}/>
-            <Button htmlType="button" type="primary" size="medium">Войти</Button>
+            <Button onClick={buttonHandler} htmlType="button" type="primary" size="medium">Войти</Button>
             <span className="text text_type_main-default text_color_inactive mt-15">Вы — новый пользователь?
                 <Link className='link ml-2' to='/register'>Зарегистрироваться</Link>
             </span>

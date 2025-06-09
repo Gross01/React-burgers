@@ -1,0 +1,26 @@
+.div {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}
+
+.active {
+    color: white;
+}
+
+.tabsText {
+    font-size: 24px;
+    padding: 14px 0;
+}
+
+.logoutButton {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 14px 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: start;
+    max-width: 80px;
+}

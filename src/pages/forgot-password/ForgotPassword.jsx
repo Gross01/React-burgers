@@ -1,11 +1,21 @@
 import React from 'react';
 import Authorization from "../../components/authorization/Authorization";
 import {Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {forgotPasswordRequest} from "../../utils/api";
 
 const ForgotPassword = () => {
 
     const [email, setEmail] = React.useState("");
+    const navigate = useNavigate();
+
+    const onClick = () => {
+        forgotPasswordRequest(email)
+            .then(() => {
+                navigate('/reset-password');
+            })
+            .catch(err => console.log(err))
+    }
 
     return (
         <Authorization title='Восстановление пароля'>
@@ -15,7 +25,7 @@ const ForgotPassword = () => {
                 name="email"
                 placeholder='Укажите e-mail'
             />
-            <Button htmlType="button" type="primary" size="medium">Восстановить</Button>
+            <Button htmlType="button" type="primary" size="medium" onClick={onClick}>Восстановить</Button>
             <span className="text text_type_main-default text_color_inactive mt-15">Вспомнили пароль?
                 <Link className='link ml-2' to='/login'>Войти</Link>
             </span>

@@ -13,6 +13,8 @@ import IngredientDetails from "../ingredient-details/IngredientDetails";
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getIngredients} from "../../services/ingredients/thunk";
+import {checkUserAuth} from "../../services/user-info/thunk";
+import {OnlyAuth, OnlyUnAuth} from "../protected-road/Protected";
 
 function App() {
     const location = useLocation();
@@ -22,6 +24,7 @@ function App() {
 
     useEffect(() => {
         dispatch(getIngredients())
+        dispatch(checkUserAuth())
     }, [dispatch])
 
     const background = location.state?.background
@@ -34,11 +37,11 @@ function App() {
                     <Routes location={background || location}>
                           <Route path="/" element={<Home />}/>
                           <Route path='ingredients/:id' element={<IngredientDetails/>}/>
-                          <Route path="/login" element={<Login />}/>
-                          <Route path="/register" element={<Register />}/>
-                          <Route path="/forgot-password" element={<ForgotPassword />}/>
-                          <Route path="/reset-password" element={<ResetPassword />}/>
-                          <Route path="/profile" element={<Profile />}/>
+                          <Route path="/login" element={<OnlyUnAuth component={<Login />} />}/>
+                          <Route path="/register" element={<OnlyUnAuth component={<Register />} />}/>
+                          <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword />} />}/>
+                          <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword />} />}/>
+                          <Route path="/profile" element={<OnlyAuth component={<Profile />} />}/>
                           <Route path="/*" element={<NotFound404 />}/>
                     </Routes>}
 

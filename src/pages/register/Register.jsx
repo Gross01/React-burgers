@@ -3,12 +3,20 @@ import Authorization from "../../components/authorization/Authorization";
 import {Button, EmailInput, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import PasswordInput from "../../UI/password-input/PasswordInput";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {registerUser} from "../../services/user-info/thunk";
 
 const Register = () => {
 
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [userName, setUserName] = React.useState("");
+    const loading = useSelector(state => state.userInfo.loading);
+    const dispatch = useDispatch();
+
+    const buttonHandler = () => {
+        dispatch(registerUser({name: userName, password: password, email: email}))
+    }
 
     return (
         <Authorization title='Регистрация'>
@@ -27,7 +35,9 @@ const Register = () => {
                 placeholder='E-mail'
             />
             <PasswordInput placeholder='Пароль' value={password} setValue={setPassword}/>
-            <Button htmlType="button" type="primary" size="medium">Зарегистрироваться</Button>
+            <Button onClick={buttonHandler} htmlType="button" type="primary" size="medium">
+                {loading ? 'Обработка' : 'Зарегистрироваться'}
+            </Button>
             <span className="text text_type_main-default text_color_inactive mt-15">Уже зарегистрированы?
                 <Link className='link ml-2' to='/login'>Войти</Link>
             </span>

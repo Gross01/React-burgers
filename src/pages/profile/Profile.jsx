@@ -1,22 +1,45 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from "./Profile.module.css";
-import ProfileTabs from "../../components/ProfileTabs/ProfileTabs";
+import ProfileTabs from "../../components/profile-tabs/ProfileTabs";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import EditableInput from "../../UI/editable-input/EditableInput";
+import {useDispatch, useSelector} from "react-redux";
+import {changeUserInfo} from "../../services/user-info/thunk";
 
 const Profile = () => {
 
+    const user = useSelector(state => state.userInfo.user);
+    const dispatch = useDispatch();
+
     const [values, setValues] = React.useState({
-        name: 'Артём',
-        email: 'artem51055@mail.ru',
-        password: '15211415',
+        name: '',
+        email: '',
+        password: '',
     })
 
     const [showButton, setShowButton] = React.useState(false);
 
+    useEffect(() => {
+        if (user) {
+            setValues(prevState => ({
+                ...prevState,
+                name: user.name || '',
+                email: user.email || '',
+            }))
+        }
+    }, [user]);
+
     const onChange = (e, input) => {
         setShowButton(true)
         setValues({...values, [input]: e.target.value});
+    }
+
+    const onClick = () => {
+        dispatch(changeUserInfo({
+            name: values.name,
+            email: values.email,
+            password: values.password
+        }))
     }
 
     return (
@@ -47,7 +70,7 @@ const Profile = () => {
                 {showButton &&
                 <div className={styles.buttonsWrapper}>
                     <Button htmlType="button" type='secondary' onClick={() => setShowButton(false)}>Отмена</Button>
-                    <Button htmlType="button" type='primary'>Сохранить</Button>
+                    <Button htmlType="button" type='primary' onClick={onClick}>Сохранить</Button>
                 </div>}
             </div>
         </div>

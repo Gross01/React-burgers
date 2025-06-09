@@ -1,12 +1,11 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
-
-const URL = 'https://norma.nomoreparties.space/api/ingredients'
+import {INGREDIENTS_URL} from "../../utils/constants";
 
 export const getIngredients = createAsyncThunk(
     'ingredients/getIngredients',
     async (_, thunkAPI) => {
         try{
-            const response = await fetch(URL)
+            const response = await fetch(INGREDIENTS_URL)
             
             if (!response.ok) {
                 return thunkAPI.rejectWithValue('Ошибка загрузки ингредиентов')

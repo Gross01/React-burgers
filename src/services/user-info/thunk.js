@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {fetchWithRefresh} from "../../utils/fetch-with-refresh";
 import {AUTH_URL} from "../../utils/constants";
 import {getUserInfo} from "../../utils/api";
-import {setIsAuthCheked, setUser} from "./slice";
+import {setIsAuthChecked, setUser} from "./slice";
 
 export const registerUser = createAsyncThunk(
     'user/register',
@@ -93,9 +93,10 @@ export const checkUserAuth = createAsyncThunk(
         if (localStorage.getItem('accessToken')) {
             getUserInfo()
                 .then(res => dispatch(setUser(res.user)))
-                .finally(() => dispatch(setIsAuthCheked(true)))
+                .finally(() => dispatch(setIsAuthChecked(true)))
+                .catch(e => console.log(e))
         } else {
-            dispatch(setIsAuthCheked(true))
+            dispatch(setIsAuthChecked(true))
         }
     }
 )

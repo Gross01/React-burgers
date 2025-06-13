@@ -1,20 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import Authorization from "../../components/authorization/Authorization";
 import {Link} from "react-router-dom";
 import PasswordInput from "../../UI/password-input/PasswordInput";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {loginUser} from "../../services/user-info/thunk";
+import ErrorMessage from "../../UI/error-message/ErrorMessage";
+import {setError} from "../../services/user-info/slice";
 
 const Login = () => {
 
     const [password, setPassword] = React.useState("");
     const [email, setEmail] = React.useState('');
+    const error = useSelector(state => state.userInfo.error);
     const dispatch = useDispatch();
 
     const buttonHandler = () => {
         dispatch(loginUser({password: password, email: email}))
     }
+
+    useEffect(() => {
+        dispatch(setError(false))
+    }, [dispatch]);
 
     return (
         <Authorization title='Вход'>
@@ -32,6 +39,7 @@ const Login = () => {
             <span className="text text_type_main-default text_color_inactive">Забыли пароль?
                 <Link className='link ml-2' to='/forgot-password'>Восстановить пароль</Link>
             </span>
+            {error && <ErrorMessage message='Неправильный логин или пароль' />}
         </Authorization>
     );
 };

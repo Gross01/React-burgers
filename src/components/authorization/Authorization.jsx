@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from "../../components/authorization/Authorization.module.css";
+import ConstructorItem from "../constructor-item/ConstructorItem";
+import {PropTypes} from 'prop-types'
 
 const Authorization = ({children, title}) => {
     return (
@@ -8,6 +10,10 @@ const Authorization = ({children, title}) => {
             {children}
         </div>
     );
+};
+
+ConstructorItem.propTypes = {
+    title: PropTypes.string,
 };
 
 export default Authorization;

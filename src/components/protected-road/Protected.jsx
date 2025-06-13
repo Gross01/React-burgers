@@ -1,6 +1,7 @@
-
+import {PropTypes} from 'prop-types'
 import {useSelector} from "react-redux";
 import {Navigate, useLocation} from "react-router-dom";
+import ConstructorItem from "../constructor-item/ConstructorItem";
 
 const Protected = ({onlyUnAuth = false, component}) => {
     const isAuthChecked = useSelector(state => state.userInfo.isAuthCheked);
@@ -22,6 +23,10 @@ const Protected = ({onlyUnAuth = false, component}) => {
 
     return component;
 }
+
+ConstructorItem.propTypes = {
+    component: PropTypes.func.isRequired,
+};
 
 export const OnlyAuth = Protected;
 export const OnlyUnAuth = ({component}) => <Protected onlyUnAuth={true} component={component} />

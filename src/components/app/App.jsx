@@ -15,6 +15,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {getIngredients} from "../../services/ingredients/thunk";
 import {checkUserAuth} from "../../services/user-info/thunk";
 import {OnlyAuth, OnlyUnAuth} from "../protected-road/Protected";
+import ChangeUserInfo from "../change-user-info/ChangeUserInfo";
+import OrdersHistory from "../orders-history/OrdersHistory";
 
 function App() {
     const location = useLocation();
@@ -41,7 +43,10 @@ function App() {
                           <Route path="/register" element={<OnlyUnAuth component={<Register />} />}/>
                           <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword />} />}/>
                           <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword />} />}/>
-                          <Route path="/profile" element={<OnlyAuth component={<Profile />} />}/>
+                          <Route path="/profile" element={<OnlyAuth component={<Profile />} />}>
+                              <Route index element={<ChangeUserInfo />}/>
+                              <Route path='orders' element={<OrdersHistory />}/>
+                          </Route>
                           <Route path="/*" element={<NotFound404 />}/>
                     </Routes>}
 

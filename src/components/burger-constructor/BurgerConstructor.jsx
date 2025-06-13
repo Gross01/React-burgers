@@ -6,6 +6,8 @@ import OrderDetails from '../order-details/OrderDetails'
 import {useSelector, useDispatch} from 'react-redux'
 import ConstructorItems from '../constructor-items/ConstructorItems'
 import {sendOrder} from '../../services/order/thunk'
+import {useNavigate} from "react-router-dom";
+import Preloader from "../../UI/preloader/Preloader";
 
 function BurgerConstructor () {
 
@@ -15,6 +17,8 @@ function BurgerConstructor () {
     const error = useSelector(store => store.order.error)
     const loading = useSelector(store => store.order.loading)
     const constructorItems = useSelector(store => store.constructorItems)
+    const user = useSelector(store => store.userInfo?.user)
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
 
@@ -25,8 +29,16 @@ function BurgerConstructor () {
     ), [constructorItems])
 
     const modalHandler = () => {
-      dispatch(sendOrder(itemsIngredietsId))
       setModalVisible(!modalVisible)
+    }
+
+    const buttonHandler = () => {
+        if (!user) {
+            navigate('/login')
+            return
+        }
+        modalHandler()
+        dispatch(sendOrder(itemsIngredietsId))
     }
 
     const priceSum = useMemo(() => {
@@ -52,10 +64,10 @@ function BurgerConstructor () {
 
             <div className={`${styles.priceDiv} mt-10`}>
               <span className={`${styles.priceSpan} text text_type_main-medium`}>{priceSum} <CurrencyIcon/></span>
-              <Button htmlType="button" type="primary" size="medium" onClick={modalHandler} disabled={disabledButton}>
+              <Button htmlType="button" type="primary" size="medium" disabled={disabledButton} onClick={buttonHandler}>
                 {
                   loading 
-                  ?  'Обработка'
+                  ?  <Preloader/>
                   : 'Оформить заказ'
                 }
               </Button>

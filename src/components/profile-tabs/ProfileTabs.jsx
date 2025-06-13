@@ -17,8 +17,8 @@ const ProfileTabs = () => {
 
     return (
         <div className={styles.div}>
-            <NavLink className={linkClass} to="/profile">Профиль</NavLink>
-            <NavLink className={linkClass} to="*">История заказов</NavLink>
+            <NavLink className={linkClass} to="/profile" end>Профиль</NavLink>
+            <NavLink className={linkClass} to="/profile/orders">История заказов</NavLink>
             <button className={styles.logoutButton} onClick={buttonHandler}>
                 <span className={`text text_type_main-default ${styles.tabsText} text_color_inactive`}>Выход</span>
             </button>

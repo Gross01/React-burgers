@@ -15,7 +15,8 @@ const Login = () => {
     const error = useSelector(state => state.userInfo.error);
     const dispatch = useDispatch();
 
-    const buttonHandler = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
         dispatch(loginUser({password: password, email: email}))
     }
 
@@ -24,7 +25,7 @@ const Login = () => {
     }, [dispatch]);
 
     return (
-        <Authorization title='Вход'>
+        <Authorization title='Вход' onSubmit={onSubmit}>
             <EmailInput
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -32,7 +33,7 @@ const Login = () => {
                 placeholder='E-mail'
             />
             <PasswordInput placeholder='Пароль' value={password} setValue={setPassword}/>
-            <Button onClick={buttonHandler} htmlType="button" type="primary" size="medium">Войти</Button>
+            <Button htmlType="submit" type="primary" size="medium">Войти</Button>
             <span className="text text_type_main-default text_color_inactive mt-15">Вы — новый пользователь?
                 <Link className='link ml-2' to='/register'>Зарегистрироваться</Link>
             </span>

@@ -25,7 +25,7 @@ const Protected = ({onlyUnAuth = false, component}) => {
 }
 
 ConstructorItem.propTypes = {
-    component: PropTypes.func.isRequired,
+    component: PropTypes.func
 };
 
 export const OnlyAuth = Protected;

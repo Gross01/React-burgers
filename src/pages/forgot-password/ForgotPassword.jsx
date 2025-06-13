@@ -9,7 +9,8 @@ const ForgotPassword = () => {
     const [email, setEmail] = React.useState("");
     const navigate = useNavigate();
 
-    const onClick = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
         forgotPasswordRequest(email)
             .then(() => {
                 navigate('/reset-password');
@@ -18,14 +19,14 @@ const ForgotPassword = () => {
     }
 
     return (
-        <Authorization title='Восстановление пароля'>
+        <Authorization onSubmit={onSubmit} title='Восстановление пароля'>
             <EmailInput
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 name="email"
                 placeholder='Укажите e-mail'
             />
-            <Button htmlType="button" type="primary" size="medium" onClick={onClick}>Восстановить</Button>
+            <Button htmlType="submit" type="primary" size="medium">Восстановить</Button>
             <span className="text text_type_main-default text_color_inactive mt-15">Вспомнили пароль?
                 <Link className='link ml-2' to='/login'>Войти</Link>
             </span>

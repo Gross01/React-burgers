@@ -11,7 +11,8 @@ const ResetPassword = () => {
     const [code, setCode] = React.useState("");
     const navigate = useNavigate();
 
-    const onClick = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
         changePassword(password, code)
             .then(() => {
                 navigate("/login");
@@ -20,7 +21,7 @@ const ResetPassword = () => {
     }
 
     return (
-        <Authorization title='Восстановление пароля'>
+        <Authorization onSubmit={onSubmit} title='Восстановление пароля'>
             <PasswordInput placeholder='Введите новый пароль' value={password} setValue={setPassword} />
             <Input
                 type='text'
@@ -29,7 +30,7 @@ const ResetPassword = () => {
                 onChange={(e) => setCode(e.target.value)}
                 placeholder='Введите код из письма'
             />
-            <Button htmlType="button" type="primary" size="medium" onClick={onClick}>Сохранить</Button>
+            <Button htmlType="submit" type="primary" size="medium">Сохранить</Button>
             <span className="text text_type_main-default text_color_inactive mt-15">Вспомнили пароль?
                 <Link className='link ml-2' to='/login'>Войти</Link>
             </span>

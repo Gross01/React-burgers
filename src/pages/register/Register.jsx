@@ -17,7 +17,8 @@ const Register = () => {
     const loading = useSelector(state => state.userInfo.loading);
     const dispatch = useDispatch();
 
-    const buttonHandler = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
         dispatch(registerUser({name: userName, password: password, email: email}))
     }
 
@@ -26,7 +27,7 @@ const Register = () => {
     }, [dispatch]);
 
     return (
-        <Authorization title='Регистрация'>
+        <Authorization onSubmit={onSubmit} title='Регистрация'>
             <Input
                 placeholder='Имя'
                 value={userName}
@@ -42,7 +43,7 @@ const Register = () => {
                 placeholder='E-mail'
             />
             <PasswordInput placeholder='Пароль' value={password} setValue={setPassword}/>
-            <Button onClick={buttonHandler} htmlType="button" type="primary" size="medium">
+            <Button htmlType="submit" type="primary" size="medium">
                 {loading ? 'Обработка' : 'Зарегистрироваться'}
             </Button>
             <span className="text text_type_main-default text_color_inactive mt-15">Уже зарегистрированы?

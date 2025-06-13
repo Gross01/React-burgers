@@ -41,7 +41,8 @@ const ChangeUserInfo = () => {
         setValues({...values, [input]: e.target.value});
     }
 
-    const onClick = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
         dispatch(changeUserInfo({
             name: values.name,
             email: values.email,
@@ -50,7 +51,7 @@ const ChangeUserInfo = () => {
     }
 
     return (
-        <div className={`${styles.wrapper} ml-15`}>
+        <form className={`${styles.wrapper} ml-15`} onSubmit={onSubmit}>
             <EditableInput
                 type="text"
                 placeholder='Имя'
@@ -75,14 +76,14 @@ const ChangeUserInfo = () => {
             {showButton &&
                 <div className={styles.buttonsWrapper}>
                     <Button htmlType="button" type='secondary' onClick={() => setShowButton(false)}>Отмена</Button>
-                    <Button htmlType="button" type='primary' onClick={onClick}>Сохранить</Button>
+                    <Button htmlType="submit" type='primary'>Сохранить</Button>
                 </div>}
 
             {userInfoIsChange &&
                 <span className={`text text_type_main-small`} style={{alignSelf: 'flex-end'}}>
                         Информация о пользователе успешно сохранена
                 </span>}
-        </div>
+        </form>
     );
 };
 

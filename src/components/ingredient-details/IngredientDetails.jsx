@@ -1,9 +1,18 @@
 import styles from './IngredientDetails.module.css'
 import {useSelector} from 'react-redux'
+import {useParams} from "react-router-dom";
+import {useMemo} from "react";
 
 function IngredientDetails () {
 
-    const currentIngredient = useSelector(state => state.currentIngredient)
+    const params = useParams()
+    const ingredients = useSelector(state => state.ingredients.items.data)
+
+    let currentIngredient = useMemo(() => {
+        return ingredients.filter(item => item['_id'] === params.id)
+    }, [params, ingredients])
+
+    currentIngredient = currentIngredient[0]
 
     return (
         <div className={styles.wrapper}>

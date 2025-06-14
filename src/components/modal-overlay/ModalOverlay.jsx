@@ -8,7 +8,7 @@ function ModalOverlay ({modalHandler}) {
 }
 
 ModalOverlay.propTypes = {
-    modalHandler: PropTypes.func.isRequired
+    modalHandler: PropTypes.func
 }
 
 export default ModalOverlay

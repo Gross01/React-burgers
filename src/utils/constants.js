@@ -1,4 +1,0 @@
-export const ORDERS_URL = 'https://norma.nomoreparties.space/api/orders'
-export const INGREDIENTS_URL = 'https://norma.nomoreparties.space/api/ingredients'
-export const AUTH_URL = 'https://norma.nomoreparties.space/api/auth'
-export const RESET_URL = ' https://norma.nomoreparties.space/api/password-reset'

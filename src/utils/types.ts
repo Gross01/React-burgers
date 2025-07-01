@@ -18,3 +18,17 @@ export type TConstructorIngredient = Pick<TIngredient, 'name' | 'image' | 'price
     ingredientId: string
     bun: boolean;
 }
+
+export type TOptionsType = {
+    method?: string;
+    headers?: HeadersInit;
+    body?: BodyInit | null;
+}
+
+export type TSuccess = {
+    success: boolean,
+    user: {
+        name: string,
+        email: string,
+    }
+}

@@ -1,4 +1,5 @@
 import {AUTH_URL} from "./constants";
+import {TOptionsType} from "./types";
 
 const checkResponse = (res: Response) => {
     return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
@@ -24,12 +25,6 @@ export const refreshToken = () => {
             return refreshData;
         });
 };
-
-type TOptionsType = {
-    method?: string;
-    headers?: HeadersInit;
-    body?: BodyInit | null;
-}
 
 export const fetchWithRefresh = async (url: string, options: TOptionsType = {}) => {
     try {

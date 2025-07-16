@@ -11,8 +11,6 @@ const rootReducer = combineReducers({
     userInfo: userSlice.reducer,
 })
 
-export const createStore = () => {
-    return configureStore({
-        reducer: rootReducer
-    })
-}
+export const store = configureStore({
+    reducer: rootReducer
+})

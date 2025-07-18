@@ -38,3 +38,20 @@ export type TUser = {
     email: string,
     password?: string,
 }
+
+export type TOrdersFeedItem = {
+    _id: string,
+    ingredients: string[],
+    status: string,
+    name: string,
+    createdAt: string,
+    updatedAt: string,
+    number: number
+}
+
+export type TOrdersFeedMessage = {
+    success: boolean,
+    orders: TOrdersFeedItem[],
+    total: number,
+    totalToday: number,
+}

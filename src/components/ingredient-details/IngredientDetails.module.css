@@ -1,4 +1,5 @@
 .wrapper {
+    align-self: center;
     max-width: 520px;
     margin: 0 auto;
     display: flex;

@@ -18,6 +18,7 @@ import ChangeUserInfo from "../change-user-info/ChangeUserInfo";
 import OrdersHistory from "../orders-history/OrdersHistory";
 import OrdersFeed from "../../pages/orders-feed/OrdersFeed";
 import NotFound404 from "../../pages/not-found-404/NotFound404";
+import OrderInfo from "../order-info/OrderInfo";
 
 function App(): React.JSX.Element {
     const location = useLocation();
@@ -50,12 +51,14 @@ function App(): React.JSX.Element {
                           </Route>
                           <Route path="/*" element={<NotFound404 />}/>
                           <Route path="/feed" element={<OrdersFeed />}/>
+                          <Route path="/feed/:id" element={<OrderInfo />}/>
                     </Routes>}
 
                     {background &&
                       ingredients &&
                     <Routes>
                           <Route path="/ingredients/:id" element={<Modal modalHandler={() => navigate('/')}><IngredientDetails/></Modal>}/>
+                          <Route path="/feed/:id" element={<Modal modalHandler={() => navigate('/feed')}><OrderInfo/></Modal>}/>
                     </Routes>}
             </main>
         </div>

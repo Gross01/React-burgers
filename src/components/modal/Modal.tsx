@@ -46,7 +46,7 @@ function Modal ({title, modalHandler, children}: TModalProps): React.JSX.Element
             <div className={`${styles.modal} p-10 pt-15 pb-15`}>
                 <div className={styles.modalWrapper}>
                     <h2 className='text text_type_main-large'>{
-                        title ? title : currentIngredient ? currentIngredient[0].name : ''
+                        title ? title : currentIngredient ? currentIngredient[0]?.name : ''
                     }</h2>
                     <button onClick={modalHandler} type='button' className={styles.button}>
                         <CloseIcon type='primary'/>

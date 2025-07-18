@@ -1,0 +1,77 @@
+.order {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 40px;
+    background: #1C1C21;
+    min-width: 584px;
+}
+
+.div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lastDiv {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    height: 64px;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.ingredients {
+    display: flex;
+}
+
+.ingredients div {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    border: 2px solid #801AB2;
+    border-radius: 50%;
+    background: black;
+    bottom: 24px;
+    left: 24px;
+    z-index: 999;
+}
+
+.ingredients div:nth-child(2) {
+    left: 70px;
+    z-index: 998;
+}
+
+.ingredients div:nth-child(3) {
+    left: 110px;
+    z-index: 997;
+}
+
+.ingredients div:nth-child(4) {
+    left: 150px;
+    z-index: 996;
+}
+
+.ingredients div:nth-child(5) {
+    left: 190px;
+    z-index: 995;
+}
+
+.ingredients div:nth-child(6) {
+    left: 230px;
+    z-index: 994;
+}
+
+.priceSpan {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+

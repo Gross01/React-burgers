@@ -4,7 +4,7 @@ import styles from './Modal.module.css'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import ModalOverlay from '../modal-overlay/ModalOverlay'
 import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector} from "../../services/store";
 import {TIngredient} from "../../utils/types";
 
 type TModalProps = {
@@ -16,10 +16,10 @@ type TModalProps = {
 function Modal ({title, modalHandler, children}: TModalProps): React.JSX.Element {
 
     const params = useParams()
-    //@ts-ignore
-    const ingredients = useSelector(state => state.ingredients.items.data)
+    const ingredients = useSelector(state => state.ingredients.items?.data)
 
-    const currentIngredient = useMemo(() => {
+    const currentIngredient = useMemo<TIngredient[] | undefined>(() => {
+        if (!ingredients) return undefined
         return ingredients.filter((item: TIngredient) => item['_id'] === params.id)
     }, [params, ingredients])
 
@@ -37,7 +37,8 @@ function Modal ({title, modalHandler, children}: TModalProps): React.JSX.Element
         }
     }, [modalHandler])
 
-    return ReactDOM.createPortal((
+    return (
+        ReactDOM.createPortal((
         <div className={styles.wrapper}>
 
             <ModalOverlay modalHandler={modalHandler}/>
@@ -45,7 +46,7 @@ function Modal ({title, modalHandler, children}: TModalProps): React.JSX.Element
             <div className={`${styles.modal} p-10 pt-15 pb-15`}>
                 <div className={styles.modalWrapper}>
                     <h2 className='text text_type_main-large'>{
-                        title ? title : currentIngredient[0].name
+                        title ? title : currentIngredient ? currentIngredient[0].name : ''
                     }</h2>
                     <button onClick={modalHandler} type='button' className={styles.button}>
                         <CloseIcon type='primary'/>
@@ -54,8 +55,8 @@ function Modal ({title, modalHandler, children}: TModalProps): React.JSX.Element
                 {children}
             </div>
         </div>
-    ), 
-    document.getElementById('modals')!)
+    ),
+    document.getElementById('modals')!))
 }
 
 export default Modal

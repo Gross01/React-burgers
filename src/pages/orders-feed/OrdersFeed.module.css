@@ -1,0 +1,7 @@
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: auto;
+    max-height: 76vh;
+}

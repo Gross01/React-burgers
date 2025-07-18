@@ -1,8 +1,20 @@
 import {createSlice} from '@reduxjs/toolkit'
 import {getIngredients} from './thunk'
+import {TIngredient} from "../../utils/types";
 
-const initialState = {
-    items: [],
+type TItems = {
+    success: boolean,
+    data: TIngredient[]
+}
+
+type TInitialState = {
+    items: TItems | null,
+    loading: boolean,
+    error: boolean
+}
+
+const initialState: TInitialState = {
+    items: null,
     loading: false,
     error: false, 
 }
@@ -10,6 +22,7 @@ const initialState = {
 export const ingredientsSlice = createSlice({
     name: 'ingredients',
     initialState,
+    reducers: {},
     extraReducers: builder => { 
         builder
             .addCase(getIngredients.pending, (state) => {

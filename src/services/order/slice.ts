@@ -1,7 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit'
 import {sendOrder} from './thunk'
 
-const initialState = {
+type TInitialState = {
+    loading: boolean,
+    error: boolean,
+    orderNumber: number | null,
+}
+
+const initialState: TInitialState = {
     loading: false,
     error: false,
     orderNumber: null,
@@ -10,6 +16,7 @@ const initialState = {
 export const orderSlice = createSlice({
     name: 'order',
     initialState,
+    reducers: {},
     extraReducers: builder => {
         builder
             .addCase(sendOrder.pending, (state) => {

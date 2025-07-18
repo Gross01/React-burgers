@@ -2,13 +2,11 @@ import React, {useRef, useState} from 'react'
 import Tabs from '../../UI/tabs/Tabs'
 import styles from './BurgerIngredients.module.css'
 import IngredientsList from '../ingredients-list/IngredientsList'
-import {useSelector} from 'react-redux'
+import {useSelector} from '../../services/store'
 import {selectBun, selectSauce, selectMain} from '../../services/ingredients/selectors'
 
 function BurgerIngredients (): React.JSX.Element {
-    //@ts-ignore
     const loading = useSelector(store => store.ingredients.loading)
-    //@ts-ignore
     const error = useSelector(store => store.ingredients.error)
     const bun = useSelector(selectBun)
     const sauce = useSelector(selectSauce)

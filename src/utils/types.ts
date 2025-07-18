@@ -32,3 +32,9 @@ export type TSuccess = {
         email: string,
     }
 }
+
+export type TUser = {
+    name?: string,
+    email: string,
+    password?: string,
+}

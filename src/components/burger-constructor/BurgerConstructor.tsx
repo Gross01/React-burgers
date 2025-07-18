@@ -3,7 +3,7 @@ import styles from './BurgerConstructor.module.css'
 import {CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import Modal from '../modal/Modal'
 import OrderDetails from '../order-details/OrderDetails'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector, useDispatch} from '../../services/store'
 import ConstructorItems from '../constructor-items/ConstructorItems'
 import {sendOrder} from '../../services/order/thunk'
 import {useNavigate} from "react-router-dom";
@@ -14,13 +14,9 @@ function BurgerConstructor (): React.JSX.Element {
 
     const [modalVisible, setModalVisible] = useState(false)
     const [disabledButton, setDisabledButton] = useState(false)
-    //@ts-ignore
     const error = useSelector(store => store.order.error)
-    //@ts-ignore
     const loading = useSelector(store => store.order.loading)
-    //@ts-ignore
     const constructorItems = useSelector(store => store.constructorItems)
-    //@ts-ignore
     const user = useSelector(store => store.userInfo?.user)
     const navigate = useNavigate()
 
@@ -42,7 +38,6 @@ function BurgerConstructor (): React.JSX.Element {
             return
         }
         modalHandler()
-        //@ts-ignore
         dispatch(sendOrder(itemsIngredientsId))
     }
 
@@ -68,7 +63,7 @@ function BurgerConstructor (): React.JSX.Element {
             <ConstructorItems setDisabled={setDisabledButton}/>
 
             <div className={`${styles.priceDiv} mt-10`}>
-              <span className={`${styles.priceSpan} text text_type_main-medium`}>{priceSum} <CurrencyIcon type='primary'/></span>
+              <span className={`${styles.priceSpan} text text_type_digits-default`}>{priceSum} <CurrencyIcon type='primary'/></span>
               <Button htmlType="button" type="primary" size="medium" disabled={disabledButton} onClick={buttonHandler}>
                 {
                   loading 

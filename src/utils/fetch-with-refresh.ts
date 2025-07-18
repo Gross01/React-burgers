@@ -31,7 +31,7 @@ export const fetchWithRefresh = async (url: string, options: TOptionsType = {}) 
         const res = await fetch(url, options);
         return await checkResponse(res);
     } catch (err: unknown) {
-        if (err instanceof Error && err.message === "jwt expired") {
+        if (err && (err as Error).message === "jwt expired") {
             const refreshData = await refreshToken();
             const headers = new Headers(options.headers);
             headers.set('authorization', refreshData.accessToken);

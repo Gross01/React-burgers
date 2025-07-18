@@ -1,5 +1,5 @@
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {useDispatch} from 'react-redux'
+import {useDispatch} from '../../services/store'
 import styles from './ConstructorItem.module.css'
 import {removeIngredient} from '../../services/constructor-items/slice'
 import {useDrag, useDrop} from 'react-dnd'

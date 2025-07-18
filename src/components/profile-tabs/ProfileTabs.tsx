@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import styles from './ProfileTabs.module.css';
-import {useDispatch} from "react-redux";
+import {useDispatch} from "../../services/store";
 import {logoutUser} from "../../services/user-info/thunk";
 
 const ProfileTabs = (): React.JSX.Element => {
@@ -9,7 +9,6 @@ const ProfileTabs = (): React.JSX.Element => {
     const dispatch = useDispatch();
 
     const buttonHandler = () => {
-        //@ts-ignore
         dispatch(logoutUser())
     }
 

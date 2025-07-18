@@ -1,4 +1,4 @@
-import {useSelector} from "react-redux";
+import {useSelector} from "../../services/store";
 import {Navigate, useLocation} from "react-router-dom";
 import React from "react";
 
@@ -8,9 +8,7 @@ type ProtectedProps = {
 }
 
 const Protected = ({onlyUnAuth = false, component}: ProtectedProps): React.JSX.Element => {
-    //@ts-ignore
-    const isAuthChecked = useSelector(state => state.userInfo.isAuthCheked);
-    //@ts-ignore
+    const isAuthChecked = useSelector(state => state.userInfo.isAuthChecked);
     const user = useSelector(state => state.userInfo.user);
     const location = useLocation();
 

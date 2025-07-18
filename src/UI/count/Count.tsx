@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react'
-import {useSelector} from 'react-redux'
+import {useSelector} from '../../services/store'
 import styles from './Count.module.css'
 import {TConstructorIngredient} from "../../utils/types";
 
@@ -9,7 +9,6 @@ type TCountProps = {
 
 function Count ({cardName}: TCountProps): React.JSX.Element | null {
 
-    //@ts-ignore
     const constructorItems = useSelector(store => store.constructorItems)
     
     const currentItemCount = useMemo(() => {

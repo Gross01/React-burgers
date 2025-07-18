@@ -4,7 +4,7 @@ import {fetchWithRefresh} from "../../utils/fetch-with-refresh";
 
 export const sendOrder = createAsyncThunk(
     'order/sendOrder',
-    async (ingredientsId, thunkAPI) => {
+    async (ingredientsId: string[], thunkAPI) => {
         try {
             const response = await fetchWithRefresh(ORDERS_URL, {
                 method: 'POST',
@@ -21,7 +21,7 @@ export const sendOrder = createAsyncThunk(
 
             return response
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.message)
+            return thunkAPI.rejectWithValue((error as Error).message)
         }
     }
 )

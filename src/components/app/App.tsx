@@ -6,29 +6,27 @@ import Login from "../../pages/login/Login";
 import Register from "../../pages/register/Register";
 import ForgotPassword from "../../pages/forgot-password/ForgotPassword";
 import ResetPassword from "../../pages/reset-password/ResetPassword";
-import NotFound404 from "../../pages/not-found-404/NotFound404";
 import Profile from "../../pages/profile/Profile";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector, useDispatch} from '../../services/store'
 import {getIngredients} from "../../services/ingredients/thunk";
 import {checkUserAuth} from "../../services/user-info/thunk";
 import {OnlyAuth, OnlyUnAuth} from "../protected-road/Protected";
 import ChangeUserInfo from "../change-user-info/ChangeUserInfo";
 import OrdersHistory from "../orders-history/OrdersHistory";
+import OrdersFeed from "../../pages/orders-feed/OrdersFeed";
+import NotFound404 from "../../pages/not-found-404/NotFound404";
 
 function App(): React.JSX.Element {
     const location = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    //@ts-ignore
-    const ingredients = useSelector(state => state.ingredients.items.data);
+    const ingredients = useSelector(state => state.ingredients.items?.data);
 
     useEffect(() => {
-        //@ts-ignore
         dispatch(getIngredients())
-        //@ts-ignore
         dispatch(checkUserAuth())
     }, [dispatch])
 
@@ -51,6 +49,7 @@ function App(): React.JSX.Element {
                               <Route path='orders' element={<OrdersHistory />}/>
                           </Route>
                           <Route path="/*" element={<NotFound404 />}/>
+                          <Route path="/feed" element={<OrdersFeed />}/>
                     </Routes>}
 
                     {background &&

@@ -8,7 +8,8 @@ import Preloader from "../../UI/preloader/Preloader";
 const OrdersHistory = (): React.JSX.Element => {
 
     const dispatch = useDispatch();
-    const ordersInfo = useSelector(state => state.ordersFeed.message?.orders);
+    const ordersInfo = useSelector(state => state.ordersHistory.message?.orders);
+    const connected = useSelector(state => state.ordersHistory.connected);
 
     useEffect(() => {
         const token = localStorage.getItem('accessToken');

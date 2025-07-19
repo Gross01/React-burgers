@@ -7,3 +7,8 @@
     overflow: auto;
     padding-right: 8px;
 }
+
+.nonOrders {
+    margin-left: 10vw;
+    align-self: center;
+}

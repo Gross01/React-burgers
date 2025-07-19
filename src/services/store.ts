@@ -40,7 +40,7 @@ const ordersHistoryMiddleWare = socketMiddleware({
     disconnected: HDisconnected,
     onMessage: HOnMessage,
     onError: HError,
-})
+}, true)
 
 export const store = configureStore({
     reducer: rootReducer,

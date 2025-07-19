@@ -51,14 +51,16 @@ function App(): React.JSX.Element {
                           </Route>
                           <Route path="/*" element={<NotFound404 />}/>
                           <Route path="/feed" element={<OrdersFeed />}/>
-                          <Route path="/feed/:id" element={<OrderInfo />}/>
+                          <Route path="/feed/:orderNumber" element={<OrderInfo />}/>
+                          <Route path="profile/orders/:orderNumber" element={<OrderInfo />}/>
                     </Routes>}
 
                     {background &&
                       ingredients &&
                     <Routes>
                           <Route path="/ingredients/:id" element={<Modal modalHandler={() => navigate('/')}><IngredientDetails/></Modal>}/>
-                          <Route path="/feed/:id" element={<Modal modalHandler={() => navigate('/feed')}><OrderInfo/></Modal>}/>
+                          <Route path="/feed/:orderNumber" element={<Modal modalHandler={() => navigate('/feed')}><OrderInfo/></Modal>}/>
+                          <Route path="/profile/orders/:orderNumber" element={<Modal modalHandler={() => navigate('/profile/orders')}><OrderInfo/></Modal>}/>
                     </Routes>}
             </main>
         </div>

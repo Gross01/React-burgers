@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    align-self: center;
+    max-width: 640px;
+    margin: 0 auto;
 }
 
 .title {
@@ -10,4 +13,39 @@
 
 .status {
     color: #00CCCC;
+}
+
+.ingredients {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 304px;
+    overflow: auto;
+    padding-right: 24px;
+}
+
+.ingredient {
+    display: flex;
+    align-items: center;
+}
+
+.image {
+    background: black;
+    border: 2px solid #801AB2;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    margin-right: 16px;
+}
+
+.priceSpan {
+    margin-left: auto;
+}
+
+.footerDiv {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }

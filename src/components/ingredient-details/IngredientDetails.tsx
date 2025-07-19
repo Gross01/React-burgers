@@ -21,7 +21,7 @@ function IngredientDetails () {
     return (
         currentIngredient &&
         <div className={styles.wrapper}>
-            <img src={currentIngredient.image} alt={currentIngredient.name} width='480' height='240'/>
+            <img src={currentIngredient.image_large} alt={currentIngredient.name} width='480' height='240'/>
             <h3 className='text text_type_main-medium mt-4 mb-8'>{currentIngredient.name}</h3>
             <ul className={styles.list}>
                 <li>

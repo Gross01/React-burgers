@@ -4,6 +4,7 @@ import styles from './OrdersFeed.module.css'
 import OrdersStatistics from "../../components/orders-statistics/OrdersStatistics";
 import {useDispatch, useSelector} from "../../services/store";
 import {wsConnect, wsDisconnect} from "../../services/orders-feed/actions";
+import Preloader from "../../UI/preloader/Preloader";
 
 const OrdersFeed = () => {
 
@@ -12,12 +13,16 @@ const OrdersFeed = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(wsConnect('wss://norma.nomoreparties.space/orders/all'))
+        dispatch(wsConnect(`wss://norma.nomoreparties.space/orders/all`));
 
         return () => {
             dispatch(wsDisconnect());
         }
     }, [dispatch])
+
+    if (!ordersInfo) {
+        return <Preloader/>
+    }
 
     if (!connected) return null;
 

@@ -5,12 +5,14 @@ import {TOrdersFeedItem} from "../../utils/types";
 import {useSelector} from "../../services/store";
 import {getOrderTime} from "../../utils/get-order-time";
 import {useLocation, useNavigate} from "react-router-dom";
+import {getOrderPrice} from "../../utils/get-order-price";
 
 type TOrdersFeedItemProps = {
-    order: TOrdersFeedItem
+    order: TOrdersFeedItem,
+    history?: boolean,
 }
 
-const OrdersFeedItem = ({order}: TOrdersFeedItemProps) => {
+const OrdersFeedItem = ({order, history = false}: TOrdersFeedItemProps) => {
 
     const ingredients = useSelector(state => state.ingredients.items?.data);
     const navigate = useNavigate();
@@ -25,25 +27,20 @@ const OrdersFeedItem = ({order}: TOrdersFeedItemProps) => {
         })
     }, [order, ingredients])
 
-    const price = useMemo((): number => {
-        if (!orderIngredients || orderIngredients.length === 0) return 0;
+    const price = useMemo(() => {
+        return getOrderPrice(orderIngredients)
+    }, [orderIngredients])
 
-        return orderIngredients.reduce((sum, item) => {
-            const withoutCopy = Array.from(new Set(orderIngredients))
-            const price = item?.price ?? 0;
-            if (withoutCopy.length !== 1) {
-                if (item?.type === 'bun') {
-                    return sum + price * 2
-                }
-            }
-            return sum + price;
-        }, 0);
-    }, [orderIngredients]);
+    const openModal = () => {
+        history
+            ? navigate(`/profile/orders/${order.number}`, {state: {background: location}})
+            : navigate(`/feed/${order.number}`, {state: {background: location}})
+    }
 
     const [day, time] = getOrderTime(order.createdAt)
 
     return (
-        <li onClick={() => navigate(`/feed/${order._id}`, {state: {background: location}})} className={`${styles.order} p-6`} id={order._id}>
+        <li onClick={openModal} className={`${styles.order} p-6`} id={order._id}>
             <div className={styles.div}>
                 <span className='text text text_type_digits-default'>{`#${order.number}`}</span>
                 <span className='text text_type_main-default text_color_inactive'>{`${day}, ${time}`}</span>

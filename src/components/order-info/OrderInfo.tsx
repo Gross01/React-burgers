@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {useSelector} from "../../services/store";
 import {useParams} from "react-router-dom";
 import styles from './OrderInfo.module.css'
@@ -36,9 +36,17 @@ const OrderInfo = () => {
         }
         return null
     })
+    const hasRequestOrder = useRef(false)
 
     useEffect(() => {
-        if (!connected && !orders && !ordersHistory && !ordersHistoryConnected && !httpOrderInfo) {
+        if (!connected &&
+            !orders &&
+            !ordersHistory &&
+            !ordersHistoryConnected &&
+            !httpOrderInfo &&
+            !hasRequestOrder.current)
+        {
+            hasRequestOrder.current = true
             dispatch(getOrderInfo(+orderNumber!))
         }
 

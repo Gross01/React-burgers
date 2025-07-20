@@ -18,12 +18,19 @@ const OrderInfo = () => {
 
     const {orderNumber} = useParams<TParams>()
     const orders = useSelector(store => store.ordersFeed.message?.orders)
+    const ordersHistory = useSelector(store => store.ordersHistory.message?.orders)
+    const ordersHistoryConnected = useSelector(store => store.ordersHistory.connected)
     const connected = useSelector(state => state.ordersFeed.connected);
     const ingredients = useSelector(state => state.ingredients.items?.data);
     const httpOrderInfo = useSelector(store => store.order.order)
     const dispatch = useDispatch();
     const order = orders?.find(order => +order.number === +orderNumber!);
+    const historyOrder = ordersHistory?.find(order => +order.number === +orderNumber!);
     const [orderInfo, setOrderInfo] = useState<TOrdersFeedItem | null>(() => {
+        if (historyOrder) {
+            return historyOrder
+        }
+
         if (order) {
             return order
         }
@@ -31,7 +38,7 @@ const OrderInfo = () => {
     })
 
     useEffect(() => {
-        if (!connected && !orders && !httpOrderInfo) {
+        if (!connected && !orders && !ordersHistory && !ordersHistoryConnected && !httpOrderInfo) {
             dispatch(getOrderInfo(+orderNumber!))
         }
 
@@ -42,7 +49,7 @@ const OrderInfo = () => {
         return () => {
             dispatch(removeOrder())
         }
-    }, [httpOrderInfo, dispatch, orders, connected, orderNumber]);
+    }, [httpOrderInfo, dispatch, orders, connected, orderNumber, ordersHistoryConnected, ordersHistory]);
 
     let orderIngredients = useMemo(() => {
         return orderInfo?.ingredients.map(id => {

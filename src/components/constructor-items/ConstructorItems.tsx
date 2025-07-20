@@ -5,13 +5,12 @@ import CenterConstructorItems from '../center-constructor-items/CenterConstructo
 import EmptyStroke from '../../UI/empty-stroke/EmptyStroke'
 import {useDrop} from 'react-dnd'
 import {addIngredient} from '../../services/constructor-items/slice'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector} from '../../services/store'
 import {nanoid} from 'nanoid'
 import {TConstructorIngredient} from "../../utils/types";
 
 function ConstructorItems ({setDisabled}: {setDisabled: (arg: boolean) => void}) {
 
-    //@ts-ignore
     const constructorItems = useSelector(store => store.constructorItems)
 
     const dispatch = useDispatch()
@@ -22,12 +21,12 @@ function ConstructorItems ({setDisabled}: {setDisabled: (arg: boolean) => void})
           isHover: monitor.isOver()
       }),
       drop (item: Omit<TConstructorIngredient, 'id'> | unknown) {
-          console.log(item)
-        dispatch(addIngredient({
-            //@ts-ignore
-          ...item,
-          id: nanoid()
-        }))
+          if (typeof item === 'object') {
+              dispatch(addIngredient({
+                  ...item,
+                  id: nanoid()
+              }))
+          }
       }
     })
 
@@ -55,8 +54,7 @@ function ConstructorItems ({setDisabled}: {setDisabled: (arg: boolean) => void})
                 <div className={`${styles.firstElement} pl-8`}>
                     <ConstructorElement
                         type='top'
-                        //@ts-ignore
-                        isLocked='true'
+                        isLocked={true}
                         text={`${bun.name} (верх)`}
                         price={bun.price}
                         thumbnail={bun.image}

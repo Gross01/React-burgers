@@ -1,9 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {loginUser, logoutUser, registerUser, changeUserInfo} from "./thunk";
+import {TUser} from "../../utils/types";
 
-const initialState = {
+type TInitialState = {
+    user: TUser | null,
+    isAuthChecked: boolean,
+    error: boolean,
+    userInfoIsChange: boolean,
+    loading?: boolean,
+}
+
+const initialState: TInitialState  = {
     user: null,
-    isAuthCheked: false,
+    isAuthChecked: false,
     error: false,
     userInfoIsChange: false,
 }
@@ -13,7 +22,7 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setIsAuthChecked: (state, action) => {
-            state.isAuthCheked = action.payload
+            state.isAuthChecked = action.payload
         },
         setUser: (state, action) => {
             state.user = action.payload
@@ -36,7 +45,7 @@ export const userSlice = createSlice({
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.user = {name: action.payload.user.name, email: action.payload.user.email}
-                state.isAuthCheked = true
+                state.isAuthChecked = true
                 state.error = false
             })
             .addCase(loginUser.rejected, (state, action) => {

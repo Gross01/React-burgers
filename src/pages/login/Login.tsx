@@ -3,7 +3,7 @@ import {Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-compon
 import Authorization from "../../components/authorization/Authorization";
 import {Link} from "react-router-dom";
 import PasswordInput from "../../UI/password-input/PasswordInput";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../services/store";
 import {loginUser} from "../../services/user-info/thunk";
 import ErrorMessage from "../../UI/error-message/ErrorMessage";
 import {setError} from "../../services/user-info/slice";
@@ -12,13 +12,11 @@ const Login = (): React.JSX.Element => {
 
     const [password, setPassword] = React.useState("");
     const [email, setEmail] = React.useState('');
-    //@ts-ignore
     const error = useSelector(state => state.userInfo.error);
     const dispatch = useDispatch();
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        //@ts-ignore
         dispatch(loginUser({password: password, email: email}))
     }
 

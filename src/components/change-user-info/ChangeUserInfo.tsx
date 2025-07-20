@@ -4,7 +4,7 @@ import EditableInput from "../../UI/editable-input/EditableInput";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {setUserInfoIsChange} from "../../services/user-info/slice";
 import {changeUserInfo} from "../../services/user-info/thunk";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "../../services/store";
 
 const ChangeUserInfo = (): React.JSX.Element => {
 
@@ -13,10 +13,8 @@ const ChangeUserInfo = (): React.JSX.Element => {
         email: '',
         password: '',
     })
-    //@ts-ignore
     const user = useSelector(state => state.userInfo.user);
     const dispatch = useDispatch();
-    //@ts-ignore
     const userInfoIsChange = useSelector(state => state.userInfo.userInfoIsChange);
     const [showButton, setShowButton] = React.useState(false);
 
@@ -45,7 +43,6 @@ const ChangeUserInfo = (): React.JSX.Element => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        //@ts-ignore
         dispatch(changeUserInfo({
             name: values.name,
             email: values.email,

@@ -1,12 +1,11 @@
 import styles from './CenterConstructorItems.module.css'
 import ConstructorItem from '../constructor-item/ConstructorItem'
-import {useSelector} from 'react-redux'
+import {useSelector} from '../../services/store'
 import {TConstructorIngredient} from "../../utils/types";
 import React from 'react'
 
 function CenterConstructorItems (): React.JSX.Element {
 
-    //@ts-ignore
     const constructorItems = useSelector(store => store.constructorItems)
 
     return (

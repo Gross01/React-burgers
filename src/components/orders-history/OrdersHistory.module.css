@@ -1,0 +1,14 @@
+.ordersHistory {
+    max-width: 884px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-height: 75vh;
+    overflow: auto;
+    padding-right: 8px;
+}
+
+.nonOrders {
+    margin-left: 10vw;
+    align-self: center;
+}

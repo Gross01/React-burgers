@@ -23,3 +23,4 @@ export const changePassword = (password: string, token: string) => request('/pas
         },
         body: JSON.stringify({password: password, token: token})
 })
+

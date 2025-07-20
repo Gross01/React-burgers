@@ -2,7 +2,8 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center ;
+    align-items: center;
+    align-self: center;
     gap: 24px;
     max-width: 480px;
     background: transparent;

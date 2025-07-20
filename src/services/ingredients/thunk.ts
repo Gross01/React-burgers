@@ -13,7 +13,7 @@ export const getIngredients = createAsyncThunk(
 
             return await response.json() 
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.message)
+            return thunkAPI.rejectWithValue((error as Error).message)
         }
     }
 )

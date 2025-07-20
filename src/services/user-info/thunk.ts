@@ -3,10 +3,11 @@ import {fetchWithRefresh} from "../../utils/fetch-with-refresh";
 import {AUTH_URL} from "../../utils/constants";
 import {getUserInfo} from "../../utils/api";
 import {setIsAuthChecked, setUser} from "./slice";
+import {TUser} from "../../utils/types";
 
 export const registerUser = createAsyncThunk(
     'user/register',
-    async (userInfo, thunkAPI) => {
+    async (userInfo: TUser, thunkAPI) => {
         try {
             const response = await fetch(`${AUTH_URL}/register`, {
                 method: 'POST',
@@ -26,14 +27,14 @@ export const registerUser = createAsyncThunk(
             localStorage.setItem('refreshToken', resJson.refreshToken)
             return resJson
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.message)
+            return thunkAPI.rejectWithValue((error as Error).message)
         }
     }
 )
 
 export const loginUser = createAsyncThunk(
     'user/login',
-    async (userInfo, thunkAPI) => {
+    async (userInfo: TUser, thunkAPI) => {
         try {
             const response = await fetch(`${AUTH_URL}/login`, {
                 method: 'POST',
@@ -53,7 +54,7 @@ export const loginUser = createAsyncThunk(
             localStorage.setItem('refreshToken', resJson.refreshToken)
             return resJson
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.message)
+            return thunkAPI.rejectWithValue((error as Error).message)
         }
     }
 )
@@ -81,7 +82,7 @@ export const logoutUser = createAsyncThunk(
 
             return await response
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.message)
+            return thunkAPI.rejectWithValue((error as Error).message)
         }
     }
 )
@@ -103,7 +104,7 @@ export const checkUserAuth = createAsyncThunk(
 
 export const changeUserInfo = createAsyncThunk(
     'user/changeUserInfo',
-    async (userInfo, thunkAPI) => {
+    async (userInfo: TUser, thunkAPI) => {
         const token = localStorage.getItem('accessToken')
 
         try {
@@ -122,7 +123,7 @@ export const changeUserInfo = createAsyncThunk(
 
             return response
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.message)
+            return thunkAPI.rejectWithValue((error as Error).message)
         }
     }
 )

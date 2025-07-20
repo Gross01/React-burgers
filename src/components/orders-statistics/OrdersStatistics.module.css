@@ -1,0 +1,43 @@
+.section {
+    padding-top: 100px;
+    margin-left: 40px;
+    min-width: 580px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.ordersWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.ordersDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 40%;
+}
+
+.orders {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 180px;
+}
+
+.ordersReady {
+  color: #00CCCC;
+}
+
+.readyOrders {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ordersCount {
+    text-shadow: 0px 0px 15px #4C4CFF;
+}

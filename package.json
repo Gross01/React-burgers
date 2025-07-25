@@ -55,5 +55,5 @@
     "@types/react-dom": "^19.1.6",
     "gh-pages": "^6.3.0"
   },
-  "homepage": "./React-burgers"
+  "homepage": "https://gross01.github.io/React-burgers/"
 }

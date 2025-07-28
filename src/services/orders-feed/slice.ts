@@ -9,7 +9,7 @@ type TInitialState = {
     error: string | null
 }
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
     connected: false,
     message: null,
     error: null,

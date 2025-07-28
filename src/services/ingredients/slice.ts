@@ -13,7 +13,7 @@ type TInitialState = {
     error: boolean
 }
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
     items: null,
     loading: false,
     error: false, 

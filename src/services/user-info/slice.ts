@@ -10,7 +10,7 @@ type TInitialState = {
     loading?: boolean,
 }
 
-const initialState: TInitialState  = {
+export const initialState: TInitialState  = {
     user: null,
     isAuthChecked: false,
     error: false,
@@ -51,7 +51,7 @@ export const userSlice = createSlice({
             .addCase(loginUser.rejected, (state, action) => {
                 state.error = true
             })
-            .addCase(logoutUser.fulfilled, (state, action) => {
+            .addCase(logoutUser.fulfilled, (state) => {
                 state.user = null
             })
             .addCase(changeUserInfo.fulfilled, (state, action) => {

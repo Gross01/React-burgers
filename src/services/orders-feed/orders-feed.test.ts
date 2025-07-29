@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 import {ordersFeedSlice, initialState} from "./slice";
 import {onError, onMessage, wsConnected, wsDisconnected} from "./actions";
 

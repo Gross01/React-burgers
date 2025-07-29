@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 import {userSlice, initialState, setIsAuthChecked, setUser, setError, setUserInfoIsChange} from "./slice";
 import {changeUserInfo, loginUser, logoutUser, registerUser} from "./thunk";
 

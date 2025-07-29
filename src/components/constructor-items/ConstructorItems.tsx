@@ -51,7 +51,7 @@ function ConstructorItems ({setDisabled}: {setDisabled: (arg: boolean) => void})
     return (
         <>
             { bun ? 
-                <div className={`${styles.firstElement} pl-8`}>
+                <div data-upper-bun='upper-bun' className={`${styles.firstElement} pl-8`}>
                     <ConstructorElement
                         type='top'
                         isLocked={true}
@@ -66,13 +66,14 @@ function ConstructorItems ({setDisabled}: {setDisabled: (arg: boolean) => void})
             <div
                 ref={node => {if (node) dropRef(node)}}
                  style={{borderRadius: '15px', outline: outline}}
+                data-constructor-id='constructor-id'
             >
                 {withoutBun.length > 0 ? <CenterConstructorItems /> : <EmptyStroke elementType='middle'/>}
             </div>
                 
                 
             {bun ? 
-                <div className={`${styles.lastElement} pl-8`}>
+                <div data-lower-bun='lower-bun' className={`${styles.lastElement} pl-8`}>
                     <ConstructorElement
                     type='bottom'
                     isLocked={true}

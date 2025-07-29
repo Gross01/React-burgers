@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 import {ingredientsSlice, initialState} from "./slice";
 import {getIngredients} from "./thunk";
 

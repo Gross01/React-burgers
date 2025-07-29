@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 import {addIngredient, constructorSlice, initialState, moveItem, removeIngredient} from "./slice";
 
 describe('constructor-items slice', () => {

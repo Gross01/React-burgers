@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 import {orderSlice, initialState, removeOrder} from "./slice";
 import {getOrderInfo, sendOrder} from "./thunk";
 

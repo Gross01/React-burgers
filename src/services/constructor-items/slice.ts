@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 import {TConstructorIngredient} from "../../utils/types";
 
-const initialState: TConstructorIngredient[] = []
+export const initialState: TConstructorIngredient[] = []
 
 export const constructorSlice = createSlice({
     name: 'constructorItems',

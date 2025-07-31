@@ -34,19 +34,18 @@ function IngredientsItem ({cardInfo}: TIngredientsItemProps): React.JSX.Element 
     const outline = isDrag ? '1px mediumpurple dashed' : 'none'
 
     return (
-        <>
             <li
                 ref={node => {
                     if (node) dragRef(node);
                 }}
                 className={styles.li} onClick={modalHandler} style={{ opacity: opacity, outline: outline }}
+                data-ingredient-id='ingredient-id'
             >
                 <img src={cardInfo.image} alt={cardInfo.name}/>
                 <span className={`${styles.price} text text_type_digits-default m-1`}>{cardInfo.price} <CurrencyIcon type="primary" /></span>
                 <p className={`${styles.name} text text_type_main-small m-1`}>{cardInfo.name}</p>
                 <Count cardName={cardInfo.name} />
             </li>
-        </>
     )
 }
 

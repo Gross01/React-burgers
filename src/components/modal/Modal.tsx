@@ -39,7 +39,7 @@ function Modal ({title, modalHandler, children}: TModalProps): React.JSX.Element
 
     return (
         ReactDOM.createPortal((
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} data-modal='modal'>
 
             <ModalOverlay modalHandler={modalHandler}/>
 

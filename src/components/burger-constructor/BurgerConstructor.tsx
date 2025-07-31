@@ -62,7 +62,7 @@ function BurgerConstructor (): React.JSX.Element {
 
             <ConstructorItems setDisabled={setDisabledButton}/>
 
-            <div className={`${styles.priceDiv} mt-10`}>
+            <div className={`${styles.priceDiv} mt-10`} data-button-div='button-div'>
               <span className={`${styles.priceSpan} text text_type_digits-default`}>{priceSum} <CurrencyIcon type='primary'/></span>
               <Button htmlType="button" type="primary" size="medium" disabled={disabledButton} onClick={buttonHandler}>
                 {

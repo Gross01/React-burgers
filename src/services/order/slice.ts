@@ -9,7 +9,7 @@ type TInitialState = {
     order: TOrdersFeedItem | null,
 }
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
     loading: false,
     error: false,
     orderNumber: null,

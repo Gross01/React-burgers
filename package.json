@@ -5,10 +5,9 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.14.2",
+    "cypress": "^14.5.3",
     "nanoid": "^5.1.5",
     "react": "^18.3.1",
     "react-dnd": "^16.0.1",
@@ -28,7 +27,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "cypress": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -49,11 +49,15 @@
     ]
   },
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.3.0",
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.7",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "identity-obj-proxy": "^3.0.0"
   },
   "homepage": "https://gross01.github.io/React-burgers/"
 }

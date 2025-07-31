@@ -36,3 +36,47 @@
 //   }
 // }
 import '@4tw/cypress-drag-drop';
+import {
+    BASE_URL,
+    CONSTRUCTOR_SELECTOR,
+    INGREDIENT_SELECTOR,
+    INGREDIENTS_URL,
+    ORDERS_URL
+} from "../../src/utils/constants";
+
+Cypress.Commands.add('dragAndDrop', () => {
+    cy.get(INGREDIENT_SELECTOR).should('exist').as('ingredient')
+    cy.get(CONSTRUCTOR_SELECTOR).should('exist').as('constructor')
+    cy.get('@ingredient')
+        .eq(1)
+        .drag('@constructor')
+    cy.get('@ingredient')
+        .eq(3)
+        .drag('@constructor')
+})
+
+Cypress.Commands.add('prepare', () => {
+    cy.visit('/');
+    cy.intercept('GET', INGREDIENTS_URL, {fixture: 'ingredients.json'})
+    cy.intercept('POST', ORDERS_URL, {fixture: 'order.json'})
+    cy.intercept('GET', `${BASE_URL}/auth/user`, {fixture: 'user.json'})
+
+    window.localStorage.setItem(
+        'refreshToken',
+        JSON.stringify('test-refreshToken')
+    )
+
+    window.localStorage.setItem(
+        'accessToken',
+        JSON.stringify('test-accessToken')
+    )
+})
+
+declare global {
+    namespace Cypress {
+        interface Chainable {
+            dragAndDrop(): Chainable<void>;
+            prepare(): void;
+        }
+    }
+}

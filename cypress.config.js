@@ -6,5 +6,6 @@ module.exports = defineConfig({
       // ...
     },
     supportFile: 'cypress/support/commands.ts',
+    baseUrl: 'http://localhost:3000'
   },
 });
